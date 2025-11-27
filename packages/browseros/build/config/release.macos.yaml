@@ -1,9 +1,9 @@
 # Nxtscape Release Build Configuration
 build:
   type: release
-  # architecture: arm64  # Default single architecture
-  architectures: [arm64, x64] # List for multi-architecture builds
-  universal: true # Create universal binary from multiple architectures
+  # architecture: arm64  # Default single architecture (kept for reference)
+  architectures: [x64] # Intel-only build
+  universal: false # Disable universal binary for faster Intel-only build
 
 gn_flags:
   file: build/config/gn/flags.macos.release.gn

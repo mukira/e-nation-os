@@ -3,7 +3,7 @@
 # High-Precision Build Monitor for E-Nation OS
 # Monitors siso build progress with 3 decimal point accuracy
 
-BUILD_DIR="/Users/Mukira/chromium/src/out/Default_arm64"
+BUILD_DIR="/Users/Mukira/chromium/src/out/Default_x64"
 METRICS_FILE="$BUILD_DIR/siso_metrics.json"
 TOTAL_TARGETS=102493  # From previous build attempt
 

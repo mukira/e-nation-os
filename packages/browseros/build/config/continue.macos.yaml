@@ -1,0 +1,15 @@
+steps:
+  clean: false
+  git_setup: false
+  apply_patches: false
+  build: true
+  sign: true
+  package: true
+
+build:
+  type: release
+  architecture: x64
+  universal: false
+
+paths:
+  chromium_src: /Users/Mukira/chromium/src

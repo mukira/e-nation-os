@@ -1,5 +1,5 @@
 # Build artifacts
-build.log
+#build.log
 build_errors.log
 nohup.out
 
@@ -30,7 +30,7 @@ build_env/
 *.orig
 
 # Logs
-*.log
+#*.log
 logs/
 
 # ccache
