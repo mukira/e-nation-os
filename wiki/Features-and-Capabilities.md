@@ -23,6 +23,14 @@ E-Nation OS combines enterprise-grade web browsing with specialized capabilities
 *   **Drill-Down Capability**: Go from national statistics to raw data in seconds.
 *   **Automated Briefings**: AI-generated daily intelligence summaries for Cabinet members.
 
+### 🧩 Mission-Specific Extensions
+**Real-Time Tools for Real-Time Missions.**
+Because E-Nation OS is browser-based, you can deploy custom "Mission Modules" to specific units instantly.
+*   **Tax Collection Module**: Deployed to KRA officers. Auto-calculates duties and verifies TINs on any webpage.
+*   **Border Control Module**: Deployed to Immigration officers. Scans passports and checks Interpol databases in real-time.
+*   **Field Ops Module**: Deployed to Police. secure communication and incident reporting directly from the browser sidebar.
+*   **Zero-Touch Deployment**: Push a new module to 10,000 officers in seconds. No IT support required.
+
 ---
 
 ## 🌍 GeoIntel: Geospatial Intelligence Platform

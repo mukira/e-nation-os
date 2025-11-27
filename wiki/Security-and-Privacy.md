@@ -12,6 +12,17 @@ E-Nation OS is built with security as the foundation, providing government-grade
 
 95% of all cyber incidents—phishing, malware, ransomware, and data exfiltration—start in the browser. By mandating **E-Nation OS** as the official government browser, you cut off the primary attack vector.
 
+### 🆔 E-Gov Sign-In: The Sovereign Identity Layer
+
+**Authenticate the Human, Not Just the Device.**
+
+E-Nation OS integrates a government-controlled identity provider directly into the browser.
+*   **Multi-Factor Enforcement**: Enforce 2FA (SMS/App), Face Recognition, or PIN for every session.
+*   **Hardware-Backed Security**: Utilizes the device's Secure Enclave (TPM/T2 chip) to store biometric keys. The biometric data *never* leaves the device.
+*   **Sovereign Auth**: Unlike "Sign in with Google," the authentication flow is 100% owned by the government. You control the keys, the logs, and the access policies.
+
+---
+
 ### The "Walled Garden" Approach
 *   **Mandatory Usage**: Enforce E-Nation OS for access to all critical government systems (IFMIS, E-Citizen, HR). If you aren't on E-Nation OS, you don't get in.
 *   **Phishing Immunity**: The browser blocks known malicious domains at the engine level. It doesn't rely on the user to "spot the fake."
