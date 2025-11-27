@@ -27,7 +27,20 @@ GeoIntel is a built-in side panel in E-Nation OS that provides:
 
 ---
 
-## 📡 Data Sources
+## 🌍 Democratized Earth Observation: "Just Ask."
+
+**The Problem**: Traditionally, getting satellite intelligence required a team of GIS specialists, expensive software, and weeks of analysis.
+**The Solution**: E-Nation OS democratizes Earth Observation.
+
+### The Query Interface
+You don't need to be a scientist. You just need to ask a question.
+*   **Natural Language**: "Show me all water pans in Turkana that have dried up in the last 3 months."
+*   **Real-Time Answer**: The system instantly queries Google Earth Engine and Sentinel data, processes the spectral indices, and displays a map with the answer.
+*   **Executive Ready**: The output is not a complex raw image; it is an actionable insight ready for a Cabinet presentation.
+
+---
+
+## 🛰️ Data Sources & Integration
 
 ### Google Earth Engine
 

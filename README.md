@@ -12,6 +12,31 @@ Government agencies sit on petabytes of data—financial records in Excel, media
 
 ---
 
+## 🇰🇪 The National AI Strategy: From Policy to Practice
+
+**E-Nation OS is the execution engine for the National AI Strategy.**
+
+Governments have high-level strategies, but they lack the tools to implement them. E-Nation OS makes the National AI Strategy **practical, usable, and secure** today.
+
+*   **Private Cloud AI**: We create a "Private Cloud" for the government. You can run, share, and train your own AI models internally.
+*   **Sovereign Knowledge**: The AI learns from *your* documents and *your* laws, creating an institutional brain that grows smarter every day.
+*   **Practical Application**: It moves AI from "future concept" to "daily utility" for every civil servant.
+
+---
+
+## 🛡️ The 95% Security Solution
+
+**Mandatory Browser Enforcement = 95% Reduction in Cyber Incidents.**
+
+The browser is the gateway to the internet and the entry point for 95% of cyberattacks (phishing, malware, data exfiltration).
+*   **The Strategy**: By mandating E-Nation OS as the official government browser, you enforce security at the gate.
+*   **The Result**:
+    *   **Phishing Blocked**: Known malicious sites are blocked at the browser level before a user can click.
+    *   **Data Leakage Stopped**: The browser prevents unauthorized uploads of sensitive files to public clouds (e.g., personal Gmail/Dropbox).
+    *   **Access Control**: Only E-Nation OS can access critical government services (IFMIS, E-Citizen), ensuring that *only* secure, managed devices touch the network.
+
+---
+
 ## 🚀 The Force Multiplier for the Civil Service
 
 **We do not replace your experts. We make them 1000x more productive.**
@@ -57,16 +82,6 @@ E-Nation OS is not just a browser; it is an **Intelligence Operating System**.
 *   **Multi-Model Fusion**: Run Gemini for reasoning, GPT-4 for creative drafting, and Custom Models for local language processing—all simultaneously.
 *   **Data Formatting**: Automatically converts unstructured "dark data" (PDFs, images, handwritten notes) into structured, machine-readable intelligence.
 *   **Real-Time Correlation**: Connects a news report (Media Team) with a financial transaction (Treasury) and a citizen complaint (E-Citizen) to reveal hidden patterns.
-
----
-
-## 🛡️ Security: Clearance-Based Access
-
-Security is not an add-on; it is the architecture.
-
-*   **Granular Access Control**: The President sees everything. A Clerk sees only what they need. Access is defined by security clearance, not just login.
-*   **Sovereign Enclave**: Built on a hardened Chromium foundation, stripped of all foreign telemetry. No data goes to Google. No data goes to Microsoft.
-*   **Audit Trail**: Every AI query, every data access, and every decision is logged for absolute accountability.
 
 ---
 
