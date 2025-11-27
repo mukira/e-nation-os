@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenya News - E-Nation OS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #22c55e 0%, #3b82f6 50%, #ef4444 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .header-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .news-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .card-header {
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(99, 102, 241, 0.2) 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .source-badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .nation {
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+            color: white;
+        }
+
+        .standard {
+            background: linear-gradient(135deg, #0284c7, #0369a1);
+            color: white;
+        }
+
+        .citizen {
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            color: white;
+        }
+
+        .capital {
+            background: linear-gradient(135deg, #ea580c, #c2410c);
+            color: white;
+        }
+
+        .star {
+            background: linear-gradient(135deg, #eab308, #ca8a04);
+            color: white;
+        }
+
+        .ktn {
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+            color: white;
+        }
+
+        .business {
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            color: white;
+        }
+
+        .tuko {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+        }
+
+        .source-name {
+            font-weight: 600;
+            color: white;
+            flex: 1;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .news-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: white;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .news-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            align-items: center;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .category-tag {
+            padding: 4px 10px;
+            background: rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            font-size: 0.75rem;
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .refresh-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            border: none;
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.5);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .refresh-button:hover {
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 12px 32px rgba(59, 130, 246, 0.6);
+        }
+
+        .refresh-button:active {
+            transform: scale(0.95);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.2rem;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .spinning {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .news-card {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @media (max-width: 768px) {
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="header-title">🇰🇪 Kenya News Hub</div>
+        <div class="header-subtitle">Live updates from Kenya's top news sources</div>
+    </div>
+
+    <div class="news-grid" id="newsContainer">
+        <div class="loading">🔄 Aggregating latest news from Kenyan sources...</div>
+    </div>
+
+    <button class="refresh-button" id="refreshBtn" title="Refresh all news">
+        🔄
+    </button>
+
+    <script>
+        const NEWS_SOURCES = [
+            {
+                name: 'Daily Nation',
+                class: 'nation',
+                url: 'https://www.nation.co.ke/',
+                category: 'General News'
+            },
+            {
+                name: 'The Standard',
+                class: 'standard',
+                url: 'https://www.standardmedia.co.ke/',
+                category: 'Breaking News'
+            },
+            {
+                name: 'Citizen Digital',
+                class: 'citizen',
+                url: 'https://www.citizen.digital/',
+                category: 'Current Affairs'
+            },
+            {
+                name: 'Capital FM',
+                class: 'capital',
+                url: 'https://www.capitalfm.co.ke/',
+                category: 'Business & Politics'
+            },
+            {
+                name: 'The Star',
+                class: 'star',
+                url: 'https://www.the-star.co.ke/',
+                category: 'News & Sports'
+            },
+            {
+                name: 'KTN News',
+                class: 'ktn',
+                url: 'https://www.standardmedia.co.ke/ktn',
+                category: 'TV News'
+            },
+            {
+                name: 'Business Daily',
+                class: 'business',
+                url: 'https://www.businessdailyafrica.com/',
+                category: 'Business & Finance'
+            },
+            {
+                name: 'Tuko News',
+                class: 'tuko',
+                url: 'https://www.tuko.co.ke/',
+                category: 'Trending Stories'
+            }
+        ];
+
+        // Comprehensive mock news data for all sources
+        const MOCK_NEWS = {
+            'Daily Nation': [
+                { title: 'President announces major infrastructure development plan for 2025', time: '45 mins ago', category: 'Politics' },
+                { title: 'Nairobi expressway phase 2 construction set to begin', time: '2 hours ago', category: 'Infrastructure' },
+                { title: 'Kenya tech hub attracts $500M in foreign investment', time: '3 hours ago', category: 'Technology' }
+            ],
+            'The Standard': [
+                { title: 'New healthcare reforms aim to improve rural access to medical services', time: '1 hour ago', category: 'Health' },
+                { title: 'Education CS unveils digital learning program for primary schools', time: '2 hours ago', category: 'Education' },
+                { title: 'Tourism sector reports 40% growth in international arrivals', time: '4 hours ago', category: 'Tourism' }
+            ],
+            'Citizen Digital': [
+                { title: 'Counties receive KES 30B allocation for devolution projects', time: '30 mins ago', category: 'Counties' },
+                { title: 'Enhanced security measures deployed across major cities', time: '1 hour ago', category: 'Security' },
+                { title: 'Agricultural reforms boost maize production by 25%', time: '3 hours ago', category: 'Agriculture' }
+            ],
+            'Capital FM': [
+                { title: 'Safaricom launches new 5G network in 10 additional towns', time: '45 mins ago', category: 'Technology' },
+                { title: 'SGR extension to Ethiopia border approved by Cabinet', time: '2 hours ago', category: 'Transport' },
+                { title: 'Kenya Stock Exchange hits new record high', time: '4 hours ago', category: 'Finance' }
+            ],
+            'The Star': [
+                { title: 'Harambee Stars qualify for AFCON 2025 finals', time: '1 hour ago', category: 'Sports' },
+                { title: 'New anti-corruption measures announced by EACC', time: '3 hours ago', category: 'Governance' },
+                { title: 'Renewable energy projects to power 2 million homes', time: '5 hours ago', category: 'Energy' }
+            ],
+            'KTN News': [
+                { title: 'Live: Parliament debates finance bill amendments', time: '20 mins ago', category: 'Politics' },
+                { title: 'Exclusive: Behind the scenes of Kenya\'s space program', time: '2 hours ago', category: 'Science' },
+                { title: 'Breaking: Major road accident along Mombasa highway', time: '4 hours ago', category: 'Breaking' }
+            ],
+            'Business Daily': [
+                { title: 'KRA collects record KES 2.3T in revenue', time: '1 hour ago', category: 'Finance' },
+                { title: 'Equity Bank announces regional expansion strategy', time: '3 hours ago', category: 'Banking' },
+                { title: 'Nairobi Securities Exchange welcomes 3 new listings', time: '5 hours ago', category: 'Markets' }
+            ],
+            'Tuko News': [
+                { title: 'Viral: Kenyan innovator builds electric motorcycles from scratch', time: '30 mins ago', category: 'Innovation' },
+                { title: 'Top 10 most beautiful places to visit in Kenya', time: '2 hours ago', category: 'Travel' },
+                { title: 'Local chef wins continental culinary competition', time: '4 hours ago', category: 'Entertainment' }
+            ]
+        };
+
+        function renderNews() {
+            const container = document.getElementById('newsContainer');
+            container.innerHTML = '';
+
+            // Create a card for each news article from all sources
+            const allNews = [];
+            NEWS_SOURCES.forEach(source => {
+                const articles = MOCK_NEWS[source.name] || [];
+                articles.forEach(article => {
+                    allNews.push({
+                        ...article,
+                        source: source.name,
+                        sourceClass: source.class,
+                        sourceUrl: source.url
+                    });
+                });
+            });
+
+            // Shuffle and display news cards
+            allNews.forEach((article, index) => {
+                const card = document.createElement('div');
+                card.className = 'news-card';
+                card.style.animationDelay = `${index * 0.05}s`;
+                card.onclick = () => window.open(article.sourceUrl, '_blank');
+
+                card.innerHTML = `
+                    <div class="card-header">
+                        <span class="source-badge ${article.sourceClass}">${article.source}</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="news-title">${article.title}</div>
+                        <div class="news-meta">
+                            <span class="meta-item">🕒 ${article.time}</span>
+                            <span class="category-tag">${article.category}</span>
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        document.getElementById('refreshBtn').addEventListener('click', function () {
+            const btn = this;
+            btn.classList.add('spinning');
+
+            setTimeout(() => {
+                renderNews();
+                btn.classList.remove('spinning');
+            }, 1000);
+        });
+
+        // Initial render
+        renderNews();
+
+        // Auto-refresh every hour
+        setInterval(renderNews, 60 * 60 * 1000);
+    </script>
+</body>
+
+</html>

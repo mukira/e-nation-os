@@ -1,0 +1,37 @@
+# Build artifacts
+build.log
+build_errors.log
+nohup.out
+
+# Chromium build output (already in separate directory)
+# Note: Chromium source is NOT included in this repo
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+build_env/
+*.egg-info/
+
+# macOS
+.DS_Store
+*.swp
+*.swo
+*~
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-*
+
+# Temporary files
+*.tmp
+*.bak
+*.orig
+
+# Logs
+*.log
+logs/
+
+# ccache
+.ccache/

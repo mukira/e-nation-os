@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Command Center - E-Nation OS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: #0a0e1a;
+            color: white;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .command-center {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: auto 1fr auto;
+            height: 100vh;
+            gap: 2px;
+            background: #1a1f35;
+        }
+
+        .header {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .quick-stats-bar {
+            padding: 12px 30px;
+            background: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .export-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .export-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .export-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .kenya-flag {
+            width: 60px;
+            height: 40px;
+            background: linear-gradient(to bottom,
+                    #000000 0%, #000000 25%,
+                    #ce1126 25%, #ce1126 50%,
+                    #007a3d 50%, #007a3d 75%,
+                    #000000 75%, #000000 100%);
+            border-radius: 4px;
+        }
+
+        .live-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .pulse {
+            width: 12px;
+            height: 12px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        .main-display {
+            background: #0f1420;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .sidebar {
+            background: #141828;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .status-bar {
+            grid-column: 1 / -1;
+            background: #1a1f35;
+            padding: 16px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 2px solid #3b82f6;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .kpi-card {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
+        }
+
+        .kpi-card.critical::before {
+            background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
+        }
+
+        .kpi-card.success::before {
+            background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
+        }
+
+        .kpi-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .kpi-label {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .kpi-status {
+            margin-top: 8px;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .status-normal {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+
+        .status-warning {
+            background: rgba(251, 191, 36, 0.2);
+            color: #fbbf24;
+        }
+
+        .status-critical {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid rgba(59, 130, 246, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .alert-item {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid #ef4444;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .alert-item:hover {
+            background: rgba(239, 68, 68, 0.15);
+            transform: translateX(4px);
+        }
+
+        .alert-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .alert-title {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .alert-time {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .alert-description {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            line-height: 1.5;
+        }
+
+        .action-button {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+
+        .action-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4);
+        }
+
+        .map-container {
+            background: rgba(15, 20, 32, 0.5);
+            border-radius: 12px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .recommendation-card {
+            background: rgba(34, 197, 94, 0.1);
+            border-left: 4px solid #22c55e;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+        }
+
+        .recommendation-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #22c55e;
+        }
+
+        .recommendation-text {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="command-center">
+        <div class="header">
+            <div class="header-title">
+                <div class="kenya-flag"></div>
+                <span>KENYA GEOSPATIAL INTELLIGENCE COMMAND CENTER</span>
+            </div>
+            <div class="live-indicator">
+                <div class="export-buttons">
+                    <button class="export-btn" onclick="ENationUtils.exportToPDF('Kenya Intelligence Report')">
+                        📄 Export PDF
+                    </button>
+                    <button class="export-btn" onclick="shareReport()">
+                        📱 Share via WhatsApp
+                    </button>
+                    <button class="export-btn"
+                        onclick="ENationUtils.copyToClipboard(getDashboardSummary(), '✓ Report copied!')">
+                        📋 Copy Summary
+                    </button>
+                </div>
+                <div class="pulse"></div>
+                <span>LIVE | Last Update: <span id="lastUpdate">--:--</span></span>
+            </div>
+        </div>
+
+        <!-- Quick Stats Bar -->
+        <div id="quickStatsBar" class="quick-stats-bar"></div>
+
+        <div class="main-display">
+            <div class="kpi-grid">
+                <div class="kpi-card success">
+                    <div class="kpi-icon">💰</div>
+                    <div class="kpi-value">KES 28.6B</div>
+                    <div class="kpi-label">Revenue Opportunity</div>
+                    <div class="kpi-status status-normal">● IDENTIFIED</div>
+                </div>
+
+                <div class="kpi-card critical">
+                    <div class="kpi-icon">🌾</div>
+                    <div class="kpi-value">5</div>
+                    <div class="kpi-label">Counties at Drought Risk</div>
+                    <div class="kpi-status status-warning">● WARNING</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-icon">🚨</div>
+                    <div class="kpi-value">12</div>
+                    <div class="kpi-label">Active Fire Detections</div>
+                    <div class="kpi-status status-normal">● MONITORED</div>
+                </div>
+
+                <div class="kpi-card success">
+                    <div class="kpi-icon">🌳</div>
+                    <div class="kpi-value">234 ha</div>
+                    <div class="kpi-label">Deforestation (30 days)</div>
+                    <div class="kpi-status status-warning">● ALERT</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-icon">🏙️</div>
+                    <div class="kpi-value">2,340</div>
+                    <div class="kpi-label">New Buildings Detected</div>
+                    <div class="kpi-status status-normal">● TRACKING</div>
+                </div>
+
+                <div class="kpi-card success">
+                    <div class="kpi-icon">🛡️</div>
+                    <div class="kpi-value">ALL</div>
+                    <div class="kpi-label">Borders Secure</div>
+                    <div class="kpi-status status-normal">● SECURE</div>
+                </div>
+            </div>
+
+            <div class="section-title">🗺️ NATIONAL INTELLIGENCE MAP</div>
+            <div class="map-container">
+                <div style="text-align: center; opacity: 0.5;">
+                    <div style="font-size: 3rem; margin-bottom: 16px;">🇰🇪</div>
+                    <div>Live Satellite Feed - Kenya Coverage</div>
+                    <div style="font-size: 0.85rem; margin-top: 8px;">Sentinel-2, Landsat, MODIS Integration</div>
+                </div>
+            </div>
+
+            <div class="section-title">📊 KEY INSIGHTS</div>
+            <div class="recommendation-card">
+                <div class="recommendation-title">💰 URGENT: Revenue Recovery Opportunity</div>
+                <div class="recommendation-text">
+                    Nairobi has 230,000 unregistered properties detected via satellite.
+                    Estimated annual revenue: <strong>KES 12.4 billion</strong>.
+                    Recommend deploying 50 field assessment teams within 30 days.
+                </div>
+                <button class="action-button" onclick="deployTeams('Nairobi')">Deploy Teams</button>
+            </div>
+
+            <div class="recommendation-card">
+                <div class="recommendation-title">🌾 WARNING: Drought Risk - Turkana County</div>
+                <div class="recommendation-text">
+                    NDVI shows vegetation stress. 120,000 people affected.
+                    Recommend immediate food aid deployment. Budget: <strong>KES 600 million</strong>.
+                </div>
+                <button class="action-button" onclick="deployAid('Turkana')">Approve Budget</button>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="section-title">🔔 CRITICAL ALERTS</div>
+
+            <div class="alert-item">
+                <div class="alert-header">
+                    <div class="alert-title">🔥 Wildfire - Tsavo East</div>
+                    <div class="alert-time">15 min ago</div>
+                </div>
+                <div class="alert-description">
+                    High-confidence fire detected. Confidence: 94%. Area: ~500 hectares.
+                </div>
+            </div>
+
+            <div class="alert-item">
+                <div class="alert-header">
+                    <div class="alert-title">🏗️ Illegal Mining - Migori</div>
+                    <div class="alert-time">2 hours ago</div>
+                </div>
+                <div class="alert-description">
+                    34 unlicensed gold mining sites detected. Revenue loss: KES 850M/year.
+                </div>
+            </div>
+
+            <div class="alert-item">
+                <div class="alert-header">
+                    <div class="alert-title">🚫 Deforestation - Mau Forest</div>
+                    <div class="alert-time">6 hours ago</div>
+                </div>
+                <div class="alert-description">
+                    45 hectares cleared in protected zone. Illegal logging suspected.
+                </div>
+            </div>
+
+            <div class="section-title" style="margin-top: 24px;">📈 QUICK STATS</div>
+
+            <div style="background: rgba(255,255,255,0.05); padding: 16px; border-radius: 8px; margin-bottom: 12px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span style="opacity: 0.7;">Counties Monitored</span>
+                    <span style="font-weight: 600;">47/47</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span style="opacity: 0.7;">Satellite Updates</span>
+                    <span style="font-weight: 600;">Daily</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span style="opacity: 0.7;">System Status</span>
+                    <span style="color: #22c55e; font-weight: 600;">● ONLINE</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span style="opacity: 0.7;">Coverage</span>
+                    <span style="font-weight: 600;">100%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <div style="display: flex; gap: 40px;">
+                <div>
+                    <span style="opacity: 0.7;">Data Sources:</span>
+                    <span style="font-weight: 600;"> Sentinel-2 | Landsat 8 | MODIS | NASA FIRMS</span>
+                </div>
+                <div>
+                    <span style="opacity: 0.7;">Processing:</span>
+                    <span style="font-weight: 600;"> Google Earth Engine | Vertex AI</span>
+                </div>
+            </div>
+            <div>
+                <span style="opacity: 0.7;">Powered by</span>
+                <span style="font-weight: 600;"> E-Nation OS | DeepIntel®</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Update time every second
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-KE', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            document.getElementById('lastUpdate').textContent = timeString;
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        function deployTeams(location) {
+            alert(`✓ Deploying field assessment teams to ${location}\nEstimated deployment: 7 days\nExpected revenue recovery: KES 3.7B in Year 1`);
+        }
+
+        function deployAid(location) {
+            alert(`✓ Emergency budget approved for ${location}\nAmount: KES 600M\nDeployment: Immediate\nBeneficiaries: 120,000 people`);
+        }
+
+        // Simulate real-time alerts
+        setInterval(() => {
+            console.log('System monitoring active...');
+        }, 30000);
+
+        // Share report via WhatsApp
+        function shareReport() {
+            const summary = getDashboardSummary();
+            ENationUtils.shareWhatsApp('Kenya Intelligence Report:\n\n' + summary);
+        }
+
+        // Get dashboard summary for sharing
+        function getDashboardSummary() {
+            return `KENYA INTELLIGENCE DASHBOARD
+    
+💰 Revenue Opportunity: KES 28.6B
+🌾 Drought Risk: 5 counties
+🚨 Active Fires: 12 monitored
+🌳 Deforestation: 234 ha (30 days)
+🏙️ New Buildings: 2,340 detected
+🛡️ Borders: All secure
+
+Generated: ${new Date().toLocaleString('en-KE')}
+Via E-Nation OS | DeepIntel®`;
+        }
+
+        // Initialize Quick Stats Widget
+        const quickStats = new ENationUtils.QuickStatsWidget('quickStatsBar');
+        quickStats.update([
+            {
+                icon: '💰',
+                value: 'KES 28.6B',
+                label: 'Revenue Found',
+                trend: 12,
+                onClick: 'alert("Revenue Intelligence Module")'
+            },
+            {
+                icon: '🌾',
+                value: '5',
+                label: 'Counties at Risk',
+                trend: -15,
+                onClick: 'alert("Food Security Module")'
+            },
+            {
+                icon: '🚨',
+                value: '12',
+                label: 'Active Fires',
+                onClick: 'alert("Disaster Response Module")'
+            },
+            {
+                icon: '🌳',
+                value: '234 ha',
+                label: 'Deforestation (30d)',
+                trend: -20,
+                onClick: 'alert("Environmental Module")'
+            },
+            {
+                icon: '🏙️',
+                value: '2.3K',
+                label: 'New Buildings',
+                trend: 8,
+                onClick: 'alert("Development Tracking")'
+            }
+        ]);
+    </script>
+
+    <!-- Load UI Utilities -->
+    <script src="../ui_utils.js"></script>
+</body>
+
+</html>

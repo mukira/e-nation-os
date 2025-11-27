@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoIntel - E-Nation OS</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            padding: 16px 20px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.1) 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .master-tabs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+            padding: 12px;
+            background: rgba(15, 23, 42, 0.5);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 12px 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.75rem;
+        }
+
+        .tab-btn:hover {
+            background: rgba(59, 130, 246, 0.15);
+            border-color: rgba(59, 130, 246, 0.3);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(37, 99, 235, 0.2) 100%);
+            border-color: #3b82f6;
+            color: white;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+        }
+
+        .tab-icon {
+            font-size: 1.4rem;
+        }
+
+        .tab-label {
+            font-weight: 500;
+            font-size: 0.7rem;
+        }
+
+        .module-content {
+            display: none;
+        }
+
+        .module-content.active {
+            display: block;
+        }
+
+        .results-area {
+            margin-top: 16px;
+            padding: 16px;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .action-btn.primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        .action-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4);
+        }
+
+        .action-btn.large {
+            padding: 16px;
+            font-size: 1.1rem;
+        }
+
+        .description {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .logo {
+            display: flex;
+        }
+
+        .header-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .btn.active {
+            background: #22c55e;
+            border-color: #22c55e;
+        }
+
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 320px;
+            background: rgba(15, 23, 42, 0.95);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .map-container {
+            flex: 1;
+            position: relative;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        .section {
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #60a5fa;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .input-group {
+            margin-bottom: 12px;
+        }
+
+        .input-label {
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            opacity: 0.8;
+        }
+
+        .input {
+            width: 100%;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .layer-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .layer-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .layer-item.active {
+            background: rgba(59, 130, 246, 0.3);
+            border: 1px solid #3b82f6;
+        }
+
+        .toggle {
+            width: 40px;
+            height: 22px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 11px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle.active {
+            background: #22c55e;
+        }
+
+        .toggle-knob {
+            width: 18px;
+            height: 18px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle.active .toggle-knob {
+            transform: translateX(18px);
+        }
+
+        .analysis-result {
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 12px;
+        }
+
+        .result-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #60a5fa;
+        }
+
+        .result-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .satellite-selector {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .satellite-btn {
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+
+        .satellite-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .satellite-btn.active {
+            background: rgba(59, 130, 246, 0.3);
+            border-color: #3b82f6;
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px 40px;
+            border-radius: 12px;
+            z-index: 2000;
+            display: none;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .kenya-boundary {
+            stroke: #22c55e;
+            stroke-width: 3;
+            fill: none;
+        }
+
+        .metric-card {
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid rgba(34, 197, 94, 0.4);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #22c55e;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="header-title">
+            <span>🛰️</span>
+            <span>GeoIntel - Geospatial Intelligence</span>
+        </div>
+        <div class="header-controls">
+            <button class="btn" onclick="resetView()">🏠 Reset View</button>
+            <button class="btn" onclick="exportData()">💾 Export</button>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="sidebar">
+            <div class="header">
+                <div class="logo">
+                    <span class="icon">🛰️</span>
+                    <span>GeoIntel AI</span>
+                </div>
+                <button class="close-btn" onclick="closeSidePanel()">×</button>
+            </div>
+
+            <!-- Master Navigation Tabs -->
+            <div class="master-tabs">
+                <button class="tab-btn active" onclick="switchModule('satellite')" data-module="satellite">
+                    <span class="tab-icon">🛰️</span>
+                    <span class="tab-label">Satellite</span>
+                </button>
+                <button class="tab-btn" onclick="switchModule('agriculture')" data-module="agriculture">
+                    <span class="tab-icon">🌾</span>
+                    <span class="tab-label">Agriculture</span>
+                </button>
+                <button class="tab-btn" onclick="switchModule('disaster')" data-module="disaster">
+                    <span class="tab-icon">🚨</span>
+                    <span class="tab-label">Disasters</span>
+                </button>
+                <button class="tab-btn" onclick="switchModule('environment')" data-module="environment">
+                    <span class="tab-icon">🌳</span>
+                    <span class="tab-label">Environment</span>
+                </button>
+                <button class="tab-btn" onclick="switchModule('revenue')" data-module="revenue">
+                    <span class="tab-icon">💰</span>
+                    <span class="tab-label">Revenue</span>
+                </button>
+                <button class="tab-btn" onclick="switchModule('executive')" data-module="executive">
+                    <span class="tab-icon">📊</span>
+                    <span class="tab-label">Executive</span>
+                </button>
+            </div>
+
+            <!-- Module: Satellite View -->
+            <div id="module-satellite" class="module-content active">
+                <!-- Data Source Selector -->
+                <div class="section">
+                    <h3>📡 Data Source</h3>
+                    <select id="dataSource" class="select-input">
+                        <option value="sentinel-2">Sentinel-2 (10m optical)</option>
+                        <option value="landsat-8">Landsat 8 (30m optical)</option>
+                        <option value="sentinel-1">Sentinel-1 (Radar)</option>
+                        <option value="modis">MODIS (250m optical)</option>
+                    </select>
+                </div>
+                <div class="section">
+                    <div class="section-title">🇰🇪 Kenya & East Africa</div>
+                    <div class="input-group">
+                        <div class="input-label">Quick Regions</div>
+                        <select class="input" id="regionSelect" onchange="selectRegion()">
+                            <option value="">Select a region...</option>
+                            <optgroup label="Kenya - Cities">
+                                <option value="Nairobi">Nairobi</option>
+                                <option value="Mombasa">Mombasa (Coastal)</option>
+                                <option value="Kisumu">Kisumu (Lakeside)</option>
+                                <option value="Nakuru">Nakuru</option>
+                                <option value="Eldoret">Eldoret</option>
+                            </optgroup>
+                            <optgroup label="Kenya - Natural">
+                                <option value="Mara">Maasai Mara</option>
+                                <option value="Tsavo">Tsavo National Park</option>
+                                <option value="Mount Kenya">Mount Kenya</option>
+                                <option value="Lake Victoria">Lake Victoria</option>
+                            </optgroup>
+                            <optgroup label="East Africa">
+                                <option value="kampala">Kampala, Uganda</option>
+                                <option value="dar">Dar es Salaam, Tanzania</option>
+                                <option value="kigali">Kigali, Rwanda</option>
+                                <option value="addis">Addis Ababa, Ethiopia</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <div class="input-label">Or search location</div>
+                        <input type="text" class="input" id="locationSearch"
+                            placeholder="e.g., Nairobi, Mombasa, Nakuru">
+                    </div>
+                    <button class="btn" onclick="searchLocation()" style="width: 100%;">Search</button>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">🛰️ Satellite Data Sources</div>
+                    <div class="satellite-selector">
+                        <button class="satellite-btn active" data-source="sentinel-2">Sentinel-2</button>
+                        <button class="satellite-btn" data-source="landsat-8">Landsat 8</button>
+                        <button class="satellite-btn" data-source="sentinel-1">Sentinel-1</button>
+                        <button class="satellite-btn" data-source="modis">MODIS</button>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">📊 Data Layers</div>
+                    <div class="layer-item active" data-layer="satellite">
+                        <span>Satellite Imagery</span>
+                        <div class="toggle active">
+                            <div class="toggle-knob"></div>
+                        </div>
+                    </div>
+                    <div class="layer-item" data-layer="ndvi">
+                        <span>NDVI (Vegetation)</span>
+                        <div class="toggle">
+                            <div class="toggle-knob"></div>
+                        </div>
+                    </div>
+                    <div class="layer-item" data-layer="water">
+                        <span>Water Bodies</span>
+                        <div class="toggle">
+                            <div class="toggle-knob"></div>
+                        </div>
+                    </div>
+                    <div class="layer-item" data-layer="infrastructure">
+                        <span>Infrastructure</span>
+                        <div class="toggle">
+                            <div class="toggle-knob"></div>
+                        </div>
+                    </div>
+                    <div class="layer-item" data-layer="change">
+                        <span>Change Detection</span>
+                        <div class="toggle">
+                            <div class="toggle-knob"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">🔍 Analysis Tools</div>
+                    <button class="btn" onclick="analyzeArea()" style="width: 100%; margin-bottom: 8px;">
+                        📊 Analyze Selected Area
+                    </button>
+                    <button class="btn" onclick="detectChanges()" style="width: 100%; margin-bottom: 8px;">
+                        🔄 Detect Changes (30 days)
+                    </button>
+                    <button class="btn" onclick="monitorInfrastructure()" style="width: 100%;">
+                        🏗️ Monitor Infrastructure
+                    </button>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">🤖 AI Embedding Analysis</div>
+                    <div class="input-group">
+                        <div class="input-label">Google Satellite Embedding</div>
+                    </div>
+                    <button class="btn" onclick="generateEmbedding()" style="width: 100%; margin-bottom: 8px;">
+                        🧠 Generate Image Embedding
+                    </button>
+                    <button class="btn" onclick="classifyLandUse()" style="width: 100%; margin-bottom: 8px;">
+                        🏞️ Classify Land Use (AI)
+                    </button>
+                    <button class="btn" onclick="aiChangeDetection()" style="width: 100%;">
+                        🤖 AI Change Detection
+                    </button>
+                    <button class="btn" onclick="analyzeKenyaFeature()" style="width: 100%; margin-top: 8px;">
+                        🇰🇪 Kenya Feature Analysis
+                    </button>
+                    <div style="font-size: 0.75rem; opacity: 0.7; margin-top: 8px;">
+                        Powered by Google Vertex AI<br>
+                        Optimized for East Africa
+                    </div>
+                </div>
+
+                <div class="section" id="resultsSection" style="display: none;">
+                    <div class="section-title">📈 Analysis Results</div>
+                    <div id="analysisResults"></div>
+                </div>
+            </div>
+
+            <div class="map-container">
+                <div id="map"></div>
+                <div class="loading" id="loading">
+                    <div>🛰️ Fetching satellite data...</div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <script src="google_satellite_embedding.js"></script>
+        <script>
+            // Initialize Google Satellite Embedding
+            const satelliteEmbedding = new GoogleSatelliteEmbedding();
+
+            // Initialize map centered on Kenya
+            const map = L.map('map', {
+                zoomControl: true,
+                attributionControl: true
+            }).setView([-0.0236, 37.9062], 6); // Kenya center
+
+            // Base layers
+            const baseLayers = {
+                'Satellite': L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                    attribution: 'Esri, Maxar, Earthstar Geographics',
+                    maxZoom: 19
+                }),
+                'OpenStreetMap': L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap contributors',
+                    maxZoom: 19
+                }),
+                'Terrain': L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+                    attribution: 'OpenTopoMap',
+                    maxZoom: 17
+                })
+            };
+
+            baseLayers['Satellite'].addTo(map);
+            L.control.layers(baseLayers).addTo(map);
+
+            // Kenya boundary (approximate)
+            const kenyaBoundary = L.polygon([
+                [4.62, 33.91],
+                [4.62, 41.91],
+                [-4.68, 41.91],
+                [-4.68, 33.91]
+            ], {
+                color: '#22c55e',
+                weight: 3,
+                fill: false,
+                dashArray: '5, 10'
+            }).addTo(map);
+
+            // Active layers
+            let activeLayers = {
+                satellite: true,
+                ndvi: false,
+                water: false,
+                infrastructure: false,
+                change: false
+            };
+
+            let currentSatellite = 'sentinel-2';
+            let selectedArea = null;
+
+            // Satellite button selection
+            document.querySelectorAll('.satellite-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    document.querySelectorAll('.satellite-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentSatellite = this.dataset.source;
+                    console.log('Selected satellite:', currentSatellite);
+                });
+            });
+
+            // Layer toggle functionality
+            document.querySelectorAll('.layer-item').forEach(item => {
+                item.addEventListener('click', function () {
+                    const layer = this.dataset.layer;
+                    const toggle = this.querySelector('.toggle');
+                    const isActive = toggle.classList.contains('active');
+
+                    toggle.classList.toggle('active');
+                    this.classList.toggle('active');
+                    activeLayers[layer] = !isActive;
+
+                    updateMapLayers();
+                });
+            });
+
+            function updateMapLayers() {
+                // In production, this would add/remove actual satellite layers
+                console.log('Active layers:', activeLayers);
+                showNotification(`Layers updated: ${Object.keys(activeLayers).filter(k => activeLayers[k]).join(', ')}`);
+            }
+
+            // Region selector for Kenya & East Africa
+            function selectRegion() {
+                const select = document.getElementById('regionSelect');
+                const region = select.value;
+                if (!region) return;
+
+                const regions = {
+                    // Kenya
+                    'Nairobi': [-1.2921, 36.8219, 11],
+                    'Mombasa': [-4.0435, 39.6682, 11],
+                    'Kisumu': [-0.0917, 34.7680, 11],
+                    'Nakuru': [-0.3031, 36.0800, 11],
+                    'Eldoret': [0.5143, 35.2698, 11],
+                    'Mara': [-1.5, 35.0, 10],
+                    'Tsavo': [-3.0, 38.5, 9],
+                    'Mount Kenya': [-0.15, 37.31, 10],
+                    'Lake Victoria': [-0.35, 34.0, 8],
+                    // East Africa
+                    'kampala': [0.3476, 32.5825, 11],
+                    'dar': [-6.7924, 39.2083, 11],
+                    'kigali': [-1.9536, 30.0606, 11],
+                    'addis': [9.0320, 38.7469, 11]
+                };
+
+                const coords = regions[region];
+                if (coords) {
+                    map.flyTo([coords[0], coords[1]], coords[2]);
+                    L.marker([coords[0], coords[1]]).addTo(map)
+                        .bindPopup(`<b>${region}</b><br>East Africa Region`)
+                        .openPopup();
+                }
+            }
+
+            function searchLocation() {
+                const query = document.getElementById('locationSearch').value;
+                if (!query) return;
+
+                // Kenya & East Africa major cities coordinates
+                const locations = {
+                    // Kenya
+                    'nairobi': [-1.2921, 36.8219],
+                    'mombasa': [-4.0435, 39.6682],
+                    'kisumu': [-0.0917, 34.7680],
+                    'nakuru': [-0.3031, 36.0800],
+                    'eldoret': [0.5143, 35.2698],
+                    'thika': [-1.0332, 37.0691],
+                    'malindi': [-3.2167, 40.1167],
+                    'nyeri': [-0.4197, 36.9519],
+                    // East Africa
+                    'kampala': [0.3476, 32.5825],
+                    'dar es salaam': [-6.7924, 39.2083],
+                    'kigali': [-1.9536, 30.0606],
+                    'addis ababa': [9.0320, 38.7469]
+                };
+
+                const location = locations[query.toLowerCase()];
+                if (location) {
+                    map.flyTo(location, 12);
+                    L.marker(location).addTo(map)
+                        .bindPopup(`<b>${query}</b><br>East Africa - Click to analyze`)
+                        .openPopup();
+                } else {
+                    showNotification(`Location "${query}" not found. Try: Nairobi, Mombasa, Kampala, Kigali`);
+                }
+            }
+
+            function analyzeArea() {
+                showLoading(true);
+
+                setTimeout(() => {
+                    const results = {
+                        area: '245.3 km²',
+                        population: 'Est. 150,000',
+                        vegetation: '42% (NDVI: 0.65)',
+                        water: '8% coverage',
+                        urbanization: '35% built-up area',
+                        changeRate: '+2.3% growth (30 days)'
+                    };
+
+                    displayResults('Area Analysis', results);
+                    showLoading(false);
+                }, 2000);
+            }
+
+            function detectChanges() {
+                showLoading(true);
+
+                setTimeout(() => {
+                    const results = {
+                        detected: '18 significant changes',
+                        newConstruction: '5 buildings',
+                        deforestation: '12 hectares',
+                        urbanExpansion: '+1.2%',
+                        waterLevel: '-3% (seasonal)',
+                        confidence: '94%'
+                    };
+
+                    displayResults('Change Detection (30 days)', results);
+                    showLoading(false);
+                }, 3000);
+            }
+
+            function monitorInfrastructure() {
+                showLoading(true);
+
+                setTimeout(() => {
+                    const results = {
+                        roads: '1,234 km mapped',
+                        buildings: '45,678 detected',
+                        newRoads: '23 km (last month)',
+                        powerLines: '456 km',
+                        airports: '2 facilities',
+                        ports: '1 major port'
+                    };
+
+                    displayResults('Infrastructure Monitoring', results);
+                    showLoading(false);
+                }, 2500);
+            }
+
+            function displayResults(title, data) {
+                const resultsSection = document.getElementById('resultsSection');
+                const resultsDiv = document.getElementById('analysisResults');
+
+                let html = `<div class="analysis-result">
+                <div class="result-title">${title}</div>
+                <div class="result-text">`;
+
+                for (const [key, value] of Object.entries(data)) {
+                    html += `<div class="metric-card">
+                    <div class="metric-value">${value}</div>
+                    <div class="metric-label">${key.replace(/([A-Z])/g, ' $1').trim()}</div>
+                </div>`;
+                }
+
+                html += `</div></div>`;
+                resultsDiv.innerHTML = html;
+                resultsSection.style.display = 'block';
+            }
+
+            function showLoading(show) {
+                document.getElementById('loading').classList.toggle('show', show);
+            }
+
+            function showNotification(message) {
+                // In production, would show a toast notification
+                console.log('Notification:', message);
+            }
+
+            function resetView() {
+                map.setView([-0.0236, 37.9062], 6);
+            }
+
+            function exportData() {
+                showNotification('Exporting data... (Feature in development)');
+            }
+
+            // Google Satellite Embedding AI Functions
+            async function generateEmbedding() {
+                showLoading(true);
+
+                try {
+                    // Get current map view bounds
+                    const bounds = map.getBounds();
+                    const mockImageUrl = `satellite://current-view/${bounds.toBBoxString()}`;
+
+                    const result = await satelliteEmbedding.generateEmbedding(mockImageUrl);
+
+                    const results = {
+                        embeddingGenerated: 'Success ✓',
+                        dimension: `${result.dimension}D vector`,
+                        model: result.model,
+                        status: result.simulated ? 'Simulated (no API key)' : 'Live from Vertex AI',
+                        usage: 'Image similarity, change detection, classification'
+                    };
+
+                    displayResults('AI Embedding Generated', results);
+                    showLoading(false);
+                } catch (error) {
+                    console.error('Embedding error:', error);
+                    showLoading(false);
+                }
+            }
+
+            async function classifyLandUse() {
+                showLoading(true);
+
+                try {
+                    const bounds = map.getBounds();
+                    const mockImageUrl = `satellite://current-view/${bounds.toBBoxString()}`;
+
+                    const result = await satelliteEmbedding.classifyLandUse(mockImageUrl);
+
+                    const results = {
+                        primaryLandUse: `${result.primaryClass} (${(result.confidence * 100).toFixed(1)}%)`,
+                        urban: `${(result.allClasses[0].confidence * 100).toFixed(1)}%`,
+                        agricultural: `${(result.allClasses[1].confidence * 100).toFixed(1)}%`,
+                        forest: `${(result.allClasses[2].confidence * 100).toFixed(1)}%`,
+                        water: `${(result.allClasses[3].confidence * 100).toFixed(1)}%`,
+                        aiModel: 'Google Satellite Embedding'
+                    };
+
+                    displayResults('AI Land Use Classification', results);
+                    showLoading(false);
+                } catch (error) {
+                    console.error('Classification error:', error);
+                    showLoading(false);
+                }
+            }
+
+            async function aiChangeDetection() {
+                showLoading(true);
+
+                setTimeout(async () => {
+                    try {
+                        const bounds = map.getBounds();
+                        const beforeUrl = `satellite://before/${bounds.toBBoxString()}`;
+                        const afterUrl = `satellite://after/${bounds.toBBoxString()}`;
+
+                        const result = await satelliteEmbedding.detectChangeWithEmbeddings(beforeUrl, afterUrl);
+
+                        const results = {
+                            changeDetected: result.changeDetected ? 'Yes ⚠️' : 'No ✓',
+                            changeScore: `${(result.changeScore * 100).toFixed(1)}%`,
+                            similarity: `${(result.similarity * 100).toFixed(1)}%`,
+                            changeType: result.changeType,
+                            confidence: `${(result.confidence * 100).toFixed(1)}%`,
+                            method: 'AI Embedding Comparison (512D)'
+                        };
+
+                        displayResults('AI-Powered Change Detection', results);
+                        showLoading(false);
+                    } catch (error) {
+                        console.error('AI change detection error:', error);
+                        showLoading(false);
+                    }
+                }, 1500);
+            }
+
+            async function analyzeKenyaFeature() {
+                showLoading(true);
+
+                try {
+                    const bounds = map.getBounds();
+                    const mockImageUrl = `satellite://current-view/${bounds.toBBoxString()}`;
+
+                    // Randomly select a Kenya-specific feature for demo
+                    const features = ['tea', 'coffee', 'wildlife', 'informal_settlement'];
+                    const randomFeature = features[Math.floor(Math.random() * features.length)];
+
+                    const result = await satelliteEmbedding.analyzeEastAfricaFeature(mockImageUrl, randomFeature);
+
+                    if (result.analysis.detected) {
+                        const analysis = result.analysis;
+                        const results = {
+                            feature: `${randomFeature.replace('_', ' ')} ✓`,
+                            detected: 'Yes',
+                            confidence: `${(analysis.confidence * 100).toFixed(1)}%`,
+                            area: analysis.area,
+                            status: analysis.health || analysis.density || analysis.type,
+                            notes: analysis.notes,
+                            region: 'East Africa'
+                        };
+
+                        displayResults(`Kenya Feature: ${randomFeature.replace('_', ' ').toUpperCase()}`, results);
+                    } else {
+                        displayResults('Kenya Feature Analysis', {
+                            status: 'No specific feature detected',
+                            suggestion: 'Try focusing on highlands (tea/coffee) or conservancies (wildlife)'
+                        });
+                    }
+
+                    showLoading(false);
+                } catch (error) {
+                    console.error('Kenya feature analysis error:', error);
+                    showLoading(false);
+                }
+            }
+
+            // Add drawing tools
+            let drawnItems = new L.FeatureGroup();
+            map.addLayer(drawnItems);
+
+            map.on('click', function (e) {
+                console.log('Clicked at:', e.latlng);
+            });
+
+            // Initialize
+            console.log('GeoIntel initialized - Ready for satellite analysis');
+            console.log('Data sources: Google Earth Engine, Copernicus Sentinel, Landsat');
+        </script>
+</body>
+
+</html>

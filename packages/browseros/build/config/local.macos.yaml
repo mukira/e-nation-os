@@ -1,0 +1,31 @@
+# Nxtscape Local Build Configuration (No Signing)
+build:
+  type: release
+  architectures: [arm64, x64] # Build both for universal binary
+  universal: true # Create universal binary for Intel + Apple Silicon
+
+gn_flags:
+  file: build/config/gn/flags.macos.release.gn
+
+steps:
+  clean: true
+  git_setup: false
+  apply_patches: true
+  build: true
+  sign: false
+  package: true
+
+# Disable Sparkle for testing (uncomment to disable)
+# disable_sparkle: true
+
+paths:
+  root_dir: .
+  # chromium_src: ../chromium-src
+
+# Environment-specific settings
+env:
+  PYTHONPATH: scripts
+
+# Notification settings
+notifications:
+  slack: false
