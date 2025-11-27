@@ -14,6 +14,7 @@ Today, we are introducing **three** revolutionary products.
 ## 1. A Military-Grade Security Vault.
 A browser that is impenetrable.
 *   **The Iron Gate**: Blocks 95% of all cyberattacks before they even load.
+*   **Built-in Government VPN**: Secure, encrypted access to government data from anywhere. No 3rd party software needed.
 *   **Sovereign Identity**: Mandatory FaceID and 2FA for every single government officer.
 *   **The Glass House**: No black boxes. No foreign telemetry. You see everything.
 

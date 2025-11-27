@@ -12,6 +12,17 @@ E-Nation OS is built with security as the foundation, providing government-grade
 
 95% of all cyber incidents—phishing, malware, ransomware, and data exfiltration—start in the browser. By mandating **E-Nation OS** as the official government browser, you cut off the primary attack vector.
 
+### 🌐 Built-in Government VPN: The Secure Tunnel
+
+**Access Anywhere. Secure Everywhere.**
+
+E-Nation OS includes a native, always-on VPN client that connects directly to the Government Private Network (GPN).
+*   **Zero-Config Access**: Officers can securely access internal systems (IFMIS, HR, Intranet) from home or the field without installing complex 3rd party VPN software.
+*   **Secure Data Push**: Field officers can upload sensitive data (census, crime reports, land surveys) through an encrypted tunnel that bypasses the public internet.
+*   **Sovereign Routing**: All traffic is routed through government-controlled nodes. No data ever touches a foreign server or ISP.
+
+---
+
 ### 🆔 E-Gov Sign-In: The Sovereign Identity Layer
 
 **Authenticate the Human, Not Just the Device.**
