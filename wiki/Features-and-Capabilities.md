@@ -6,6 +6,25 @@ E-Nation OS combines enterprise-grade web browsing with specialized capabilities
 
 ---
 
+## 🧠 The Unified AI Engine
+
+### Siloed Intelligence
+*   **Multi-Model Fusion**: Access Gemini, GPT-4, and Copilot simultaneously.
+*   **Secure Enclave**: AI runs in an air-gapped environment; no data leakage.
+*   **Custom Models**: Support for sovereign, locally-trained AI models.
+
+### Data Fusion & E-Citizen Integration
+*   **Universal Ingestion**: Connects to E-Citizen, IFMIS, and legacy databases.
+*   **Dark Data Processing**: OCR for PDFs, handwriting recognition, and video analysis.
+*   **Real-Time Correlation**: Links disparate data points (e.g., Finance + Media + Citizen Feedback) to reveal hidden patterns.
+
+### Executive Dashboard ("The God View")
+*   **Single Pane of Glass**: Real-time visualization of national health (Security, Economy, Sentiment).
+*   **Drill-Down Capability**: Go from national statistics to raw data in seconds.
+*   **Automated Briefings**: AI-generated daily intelligence summaries for Cabinet members.
+
+---
+
 ## 🌍 GeoIntel: Geospatial Intelligence Platform
 
 ### Overview
