@@ -11,7 +11,7 @@ BUILD_DIR = Path("/Users/Mukira/chromium/src/out/Default_x64")
 METRICS_FILE = BUILD_DIR / "siso_metrics.json"
 SISO_OUTPUT = BUILD_DIR / "siso_output"
 PROJECT_ROOT = Path("/Users/Mukira/Downloads/BrowserOS")
-STALL_TIMEOUT = 300  # seconds (Increased to 5 mins to prevent false positives)
+STALL_TIMEOUT = 300  # seconds (5 minutes to allow gn gen to complete)
 
 def get_file_mtime(path):
     try:
@@ -80,7 +80,7 @@ def analyze_and_fix_error():
     return fixed
 
 def resume_build():
-    print("🚀 Resuming build (Intel x64 MVP)...")
+    print("🚀 Resuming build (Intel x64 Release)...")
     # Set high file descriptor limit to prevent "Too many open files" errors
     # Run in background, redirect output
     cmd = "ulimit -n 10240 && ./run_build.sh > build_smart_resume.log 2>&1 &"

@@ -140,6 +140,12 @@ An institutional brain that knows everything you know.
   - Copernicus Sentinel (European Space Agency)
   - Landsat (NASA/USGS)
 
+**Natural Language Geospatial Queries:**
+- **Plain English Commands**: "Show me areas affected by drought in the last 30 days"
+- **Instant Visualization**: Automated map generation with highlights
+- **Multi-Source Fusion**: Combine Sentinel radar with Landsat optical imagery
+- **Policy-Ready Reports**: "Generate a 2-page brief on forest loss for the Cabinet meeting"
+
 **Use Cases:**
 - Border monitoring and security
 - Drought and famine early warning
@@ -170,6 +176,72 @@ We do not fire your experts. We make them Super-Bureaucrats.
 - Single analyst does the work of a department
 - Technical officers empowered, not replaced
 - Institutional knowledge retained within government
+
+---
+
+## 🚀 Additional Capabilities
+
+### Enhanced Security Enforcement
+**"The Walled Garden Approach"**
+
+**Browser Enforcement:**
+- **Mandatory Browser Usage**: E-Nation OS is the only approved browser for government systems
+- **Domain Whitelisting**: Only approved sites accessible to civil servants
+- **Automatic Blocking**: Malicious and unauthorized sites blocked at engine level
+- **Policy Compliance**: Zero-configuration enforcement via centralized management
+
+**Built-in Government VPN:**
+- **Seamless Integration**: VPN built directly into the browser
+- **Zero Configuration**: Works automatically when accessing government services
+- **Sovereign Infrastructure**: Routes through national network infrastructure only
+- **Field to HQ**: Officers in the field securely access IFMIS, HR systems, databases
+
+**Sovereign Identity (E-Gov Sign-In):**
+- **One Login for Everything**: Single identity across all government systems
+- **Multi-Factor Authentication**: 
+  - Biometric (FaceID, Fingerprint)
+  - Hardware key (TPM/T2)
+  - PIN/Password
+- **Clearance-Based Access**: 
+  - President sees everything
+  - Cabinet sees ministry-level
+  - Officers see task-level
+- **Audit Trail**: Complete log of who accessed what, when
+
+### Mission-Specific Extensions
+**"Real-Time Tools for Real-Time Missions"**
+
+Because E-Nation OS is browser-based, you can deploy custom "Mission Modules" to specific units instantly:
+
+**Tax Collection Module** (Deployed to KRA):
+- Auto-calculates import duties on any webpage
+- Real-time TIN verification
+- Fraud detection algorithms
+- Direct integration with iTax systems
+
+**Border Control Module** (Deployed to Immigration):
+- Instant passport scanning via camera
+- Real-time Interpol database checks
+- Watch list matching
+- Travel history correlation
+
+**Police Field Operations Module**:
+- Secure encrypted communication
+- Incident reporting with GPS tagging
+- Photo/video evidence upload
+- Direct connection to command center
+
+**Ministry-Specific Modules**:
+- Custom workflows for each department
+- Pre-loaded forms and templates
+- Direct database connections
+- Automated reporting
+
+**Zero-Touch Deployment:**
+- Central admin pushes module update
+- 10,000 officers receive it in seconds
+- No IT support required
+- Automatic updates and patching
 
 ---
 
@@ -290,6 +362,9 @@ Western nations use advanced data intelligence to maintain strategic dominance.
 | **GeoIntel** | ✅ Built-in | ❌ Custom ($$$) | ❌ None | ❌ None |
 | **Security** | ✅ Glass House | ⚠️ Black Box | ⚠️ Black Box | ⚠️ Telemetry |
 | **E-Citizen Integration** | ✅ Native | ❌ Custom ($$$) | ❌ None | ❌ None |
+| **Mission Extensions** | ✅ Unlimited | ❌ Custom ($$$) | ❌ None | ⚠️ Limited |
+| **Built-in VPN** | ✅ Yes | ❌ No | ❌ No | ❌ No |
+| **Natural Language GeoIntel** | ✅ Yes | ❌ Custom ($$$) | ⚠️ Limited | ❌ No |
 
 ---
 
@@ -356,12 +431,14 @@ Western nations use advanced data intelligence to maintain strategic dominance.
 - ✅ E-Citizen and IFMIS integration
 - ✅ Basic GeoIntel capabilities
 - ✅ Government VPN rollout
+- ✅ Mission-specific extensions framework
 
 ### Year 2
 - 🔄 Advanced AI model training on government data
 - 🔄 Mobile app for field operations
 - 🔄 Integration with additional satellite providers
 - 🔄 Predictive analytics dashboard
+- 🔄 Advanced natural language geospatial queries
 
 ### Year 3
 - 📋 Regional expansion (East African Community)
@@ -449,6 +526,12 @@ A: Local safe browsing database, on-premise updates, and complete audit logs.
 
 **Q: Can E-Nation OS work offline?**  
 A: Yes, with cached data and local AI models for critical operations.
+
+**Q: How do mission-specific extensions work?**
+A: Extensions are browser-based modules deployed instantly via central management. No installation or IT support required.
+
+**Q: Is the built-in VPN as secure as standalone VPN solutions?**
+A: Yes. It uses industry-standard encryption and routes through government-controlled infrastructure only.
 
 ---
 
