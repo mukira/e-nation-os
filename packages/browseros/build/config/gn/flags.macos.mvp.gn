@@ -1,0 +1,16 @@
+is_debug=false
+is_component_build=false # Static build = Shareable
+is_official_build=false  # Disable heavy optimizations = Faster build
+symbol_level=0           # No symbols = Faster link/smaller size
+is_clang=true
+enable_sparkle=true      # Keep Sparkle for updates if needed
+blink_symbol_level=0
+v8_symbol_level=0
+
+# Basic features
+enable_nacl=false
+enable_remoting=false
+treat_warnings_as_errors=false
+
+# Cache
+cc_wrapper="ccache"

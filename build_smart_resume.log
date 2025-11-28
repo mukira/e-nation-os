@@ -1,0 +1,1 @@
+./run_build.sh: line 10: 51400 Terminated: 15          python3 build/build.py --config build/config/mvp.macos.x64.yaml --chromium-src $HOME/chromium/src --build --package

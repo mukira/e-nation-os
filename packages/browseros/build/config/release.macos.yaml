@@ -9,9 +9,9 @@ gn_flags:
   file: build/config/gn/flags.macos.release.gn
 
 steps:
-  clean: true
+  clean: false
   git_setup: false
-  apply_patches: true
+  apply_patches: false
   build: true
   sign: true
   package: true

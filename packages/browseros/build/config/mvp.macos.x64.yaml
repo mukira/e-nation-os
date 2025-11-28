@@ -1,0 +1,23 @@
+# Nxtscape Shareable MVP Build Configuration (Intel x64)
+build:
+  type: release
+  architecture: x64
+  architectures: [x64]
+  universal: false
+
+gn_flags:
+  file: build/config/gn/flags.macos.mvp.gn
+
+steps:
+  clean: false
+  git_setup: false
+  apply_patches: false
+  build: true
+  sign: false    # Skip signing for speed (can still share raw .app, user needs to right-click open)
+  package: true  # Create DMG for easier sharing
+
+paths:
+  root_dir: .
+
+env:
+  PYTHONPATH: scripts

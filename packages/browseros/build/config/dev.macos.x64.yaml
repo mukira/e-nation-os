@@ -1,0 +1,23 @@
+# Nxtscape Fast Dev Build Configuration (Intel x64)
+build:
+  type: debug
+  architecture: x64 # Intel only for your machine
+  architectures: [x64]
+  universal: false
+
+gn_flags:
+  file: build/config/gn/flags.macos.debug.gn
+
+steps:
+  clean: false        # Incremental build
+  git_setup: false    # Skip git setup
+  apply_patches: false # Skip patching (assume already patched)
+  build: true
+  sign: false         # Skip signing for local dev
+  package: false      # Skip packaging (just build the app)
+
+paths:
+  root_dir: .
+
+env:
+  PYTHONPATH: scripts
