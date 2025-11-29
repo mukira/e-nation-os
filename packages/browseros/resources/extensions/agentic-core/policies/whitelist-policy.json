@@ -1,0 +1,22 @@
+{
+    "name": "Domain Whitelist Policy",
+    "type": "whitelist",
+    "domains": [
+        "*.go.ke",
+        "*.ac.ke",
+        "google.com",
+        "github.com",
+        "*.e-citizen.go.ke",
+        "*.ifmis.go.ke",
+        "kra.go.ke"
+    ],
+    "blocked_categories": [
+        "social-media",
+        "file-sharing",
+        "personal-email"
+    ],
+    "target": "all_users",
+    "description": "Restricts browsing to approved government domains",
+    "created_by": "admin@gov.ke",
+    "created_at": "2025-01-28T10:00:00Z"
+}

@@ -79,12 +79,25 @@ def analyze_and_fix_error():
 
     return fixed
 
-def resume_build():
-    print("🚀 Resuming build (Intel x64 Release)...")
-    # Set high file descriptor limit to prevent "Too many open files" errors
-    # Run in background, redirect output
-    cmd = "ulimit -n 10240 && ./run_build.sh > build_smart_resume.log 2>&1 &"
-    subprocess.Popen(cmd, shell=True, cwd=PROJECT_ROOT)
+def resume_build(retry_count):
+    # Dynamic concurrency based on retries
+    # Start with 10, reduce by 2 for each retry to prevent OOM
+    base_jobs = 10
+    current_jobs = max(2, base_jobs - (retry_count * 2))
+    
+    print(f"🚀 Resuming build (Intel x64 Release) with -j {current_jobs}...")
+    
+    # Use run_build.sh with concurrency flag
+    cmd = ["./run_build.sh", "-j", str(current_jobs)]
+    
+    with open("build_smart_resume.log", "a") as log_file:
+        process = subprocess.Popen(
+            cmd,
+            stdout=log_file,
+            stderr=subprocess.STDOUT,
+            cwd=PROJECT_ROOT,
+            preexec_fn=os.setsid
+        )
 
 def main():
     print("🤖 Smart Build Agent Active")
@@ -119,9 +132,10 @@ def main():
             pass
 
             if time_since_update > STALL_TIMEOUT:
-                print("\n\n🚨 DETECTED STALL (No progress for 60s)")
-                update_status("STALLED")
-                kill_build_processes()
+                print("\n\n🚨 DETECTED STALL (No progress for 300s)")
+                # update_status("STALLED")
+                # kill_build_processes() # DISABLED for bulletproof mode
+                print("   Ignoring stall in bulletproof mode. Waiting...")
                 
                 # Try to fix
                 update_status("ANALYZING_FAILURE")

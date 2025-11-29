@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Nation OS - Fleet Management Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="../../../icon.png" alt="E-Nation OS" class="header-logo">
+                <div>
+                    <h1>E-Nation OS</h1>
+                    <p>Fleet Management Console</p>
+                </div>
+            </div>
+            <div class="user-section">
+                <span class="admin-badge">🛡️ Super Admin</span>
+                <span class="admin-name">IT Department</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dashboard -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <a href="#overview" class="nav-item active" data-section="overview">
+                    <span class="nav-icon">📊</span>
+                    <span>Overview</span>
+                </a>
+                <a href="#fleet" class="nav-item" data-section="fleet">
+                    <span class="nav-icon">💻</span>
+                    <span>Fleet</span>
+                </a>
+                <a href="#policies" class="nav-item" data-section="policies">
+                    <span class="nav-icon">📋</span>
+                    <span>Policies</span>
+                </a>
+                <a href="#updates" class="nav-item" data-section="updates">
+                    <span class="nav-icon">⬆️</span>
+                    <span>Updates</span>
+                </a>
+                <a href="#whitelist" class="nav-item" data-section="whitelist">
+                    <span class="nav-icon">🔒</span>
+                    <span>Whitelist</span>
+                </a>
+                <a href="#audit" class="nav-item" data-section="audit">
+                    <span class="nav-icon">📜</span>
+                    <span>Audit Log</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Overview Section -->
+            <section id="overview" class="content-section active">
+                <h2>Fleet Overview</h2>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">💻</div>
+                        <div class="stat-details">
+                            <div class="stat-value" id="totalInstalls">10,247</div>
+                            <div class="stat-label">Total Installations</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card online">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-details">
+                            <div class="stat-value" id="activeUsers">9,812</div>
+                            <div class="stat-label">Active Now</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">⬆️</div>
+                        <div class="stat-details">
+                            <div class="stat-value" id="latestVersion">v1.0.5</div>
+                            <div class="stat-label">Latest Version</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card warning">
+                        <div class="stat-icon">⚠️</div>
+                        <div class="stat-details">
+                            <div class="stat-value" id="outdated">435</div>
+                            <div class="stat-label">Outdated Clients</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Activity -->
+                <div class="section-card">
+                    <h3>Live Activity Map</h3>
+                    <div class="activity-map">
+                        <div class="map-placeholder">
+                            <p>🗺️ Real-time map of active installations across Kenya</p>
+                            <div class="activity-indicators">
+                                <span class="indicator nairobi">Nairobi: 4,521 active</span>
+                                <span class="indicator mombasa">Mombasa: 1,832 active</span>
+                                <span class="indicator kisumu">Kisumu: 982 active</span>
+                                <span class="indicator nakuru">Nakuru: 743 active</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Deployments -->
+                <div class="section-card">
+                    <h3>Recent Deployments</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Policy</th>
+                                <th>Target</th>
+                                <th>Status</th>
+                                <th>Progress</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentDeployments">
+                            <tr>
+                                <td>VPN Auto-Connect</td>
+                                <td>All Users</td>
+                                <td><span class="badge success">Complete</span></td>
+                                <td>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 100%"></div>
+                                    </div>
+                                </td>
+                                <td>2 hours ago</td>
+                            </tr>
+                            <tr>
+                                <td>Security Update v1.0.5</td>
+                                <td>9,812 devices</td>
+                                <td><span class="badge success">Complete</span></td>
+                                <td>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 100%"></div>
+                                    </div>
+                                </td>
+                                <td>1 day ago</td>
+                            </tr>
+                            <tr>
+                                <td>Whitelist: Social Media Block</td>
+                                <td>Field Officers</td>
+                                <td><span class="badge in-progress">Deploying</span></td>
+                                <td>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 67%"></div>
+                                    </div>
+                                </td>
+                                <td>Active</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Fleet Section -->
+            <section id="fleet" class="content-section">
+                <h2>Fleet Management</h2>
+
+                <div class="section-card">
+                    <div class="card-header">
+                        <h3>All Installations</h3>
+                        <div class="filter-controls">
+                            <select id="filterStatus">
+                                <option value="all">All Status</option>
+                                <option value="online">Online</option>
+                                <option value="offline">Offline</option>
+                                <option value="outdated">Outdated</option>
+                            </select>
+                            <input type="search" placeholder="Search by ID or Department..." id="searchFleet">
+                        </div>
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Installation ID</th>
+                                <th>Department</th>
+                                <th>Version</th>
+                                <th>Status</th>
+                                <th>Last Seen</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="fleetTable">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Policies Section -->
+            <section id="policies" class="content-section">
+                <h2>Policy Management</h2>
+
+                <div class="action-bar">
+                    <button class="btn-primary" id="createPolicy">
+                        <span>➕</span> Create New Policy
+                    </button>
+                </div>
+
+                <div class="policy-grid">
+                    <div class="policy-card">
+                        <div class="policy-header">
+                            <h3>VPN Auto-Connect</h3>
+                            <span class="badge success">Active</span>
+                        </div>
+                        <p class="policy-description">Automatically enables VPN when accessing government sites</p>
+                        <div class="policy-stats">
+                            <span>📍 Deployed to: All Users</span>
+                            <span>📅 Last updated: 2 days ago</span>
+                        </div>
+                        <div class="policy-actions">
+                            <button class="btn-secondary">Edit</button>
+                            <button class="btn-danger">Disable</button>
+                        </div>
+                    </div>
+
+                    <div class="policy-card">
+                        <div class="policy-header">
+                            <h3>Domain Whitelist</h3>
+                            <span class="badge success">Active</span>
+                        </div>
+                        <p class="policy-description">Restricts access to approved government domains only</p>
+                        <div class="policy-stats">
+                            <span>📍 Deployed to: 7,234 users</span>
+                            <span>📅 Last updated: 5 days ago</span>
+                        </div>
+                        <div class="policy-actions">
+                            <button class="btn-secondary">Edit</button>
+                            <button class="btn-danger">Disable</button>
+                        </div>
+                    </div>
+
+                    <div class="policy-card">
+                        <div class="policy-header">
+                            <h3>Clearance-Based Access</h3>
+                            <span class="badge warning">Draft</span>
+                        </div>
+                        <p class="policy-description">Restricts features based on user clearance level</p>
+                        <div class="policy-stats">
+                            <span>📍 Target: All Users</span>
+                            <span>📅 Created: 1 hour ago</span>
+                        </div>
+                        <div class="policy-actions">
+                            <button class="btn-primary">Deploy</button>
+                            <button class="btn-secondary">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Updates Section -->
+            <section id="updates" class="content-section">
+                <h2>Update Management</h2>
+
+                <div class="section-card">
+                    <h3>Push Extension Update</h3>
+                    <div class="update-form">
+                        <div class="form-group">
+                            <label>Version Number</label>
+                            <input type="text" placeholder="e.g., 1.0.6" id="versionNumber">
+                        </div>
+                        <div class="form-group">
+                            <label>Target</label>
+                            <select id="updateTarget">
+                                <option value="all">All Installations (10,247)</option>
+                                <option value="outdated">Outdated Only (435)</option>
+                                <option value="test">Test Group (50)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Rollout Strategy</label>
+                            <select id="rolloutStrategy">
+                                <option value="immediate">Immediate (All at once)</option>
+                                <option value="gradual">Gradual (10% per hour)</option>
+                                <option value="staged">Staged (Test → Prod)</option>
+                            </select>
+                        </div>
+                        <button class="btn-primary btn-large" id="pushUpdate">
+                            <span>🚀</span> Deploy Update
+                        </button>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <h3>Update History</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Version</th>
+                                <th>Deployed</th>
+                                <th>Success Rate</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>v1.0.5</td>
+                                <td>Jan 27, 2025</td>
+                                <td>99.8% (9,795/9,812)</td>
+                                <td><span class="badge success">Complete</span></td>
+                            </tr>
+                            <tr>
+                                <td>v1.0.4</td>
+                                <td>Jan 20, 2025</td>
+                                <td>100% (9,234/9,234)</td>
+                                <td><span class="badge success">Complete</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Whitelist Section -->
+            <section id="whitelist" class="content-section">
+                <h2>Domain Whitelist (Walled Garden)</h2>
+
+                <div class="section-card">
+                    <h3>Approved Domains</h3>
+                    <div class="whitelist-controls">
+                        <input type="text" placeholder="Add domain (e.g., *.go.ke)" id="newDomain">
+                        <button class="btn-primary" id="addDomain">Add Domain</button>
+                    </div>
+
+                    <div class="domain-list">
+                        <div class="domain-item">
+                            <span class="domain-name">*.go.ke</span>
+                            <span class="domain-category">Government</span>
+                            <button class="btn-small btn-danger">Remove</button>
+                        </div>
+                        <div class="domain-item">
+                            <span class="domain-name">*.ac.ke</span>
+                            <span class="domain-category">Education</span>
+                            <button class="btn-small btn-danger">Remove</button>
+                        </div>
+                        <div class="domain-item">
+                            <span class="domain-name">google.com</span>
+                            <span class="domain-category">Approved Tools</span>
+                            <button class="btn-small btn-danger">Remove</button>
+                        </div>
+                        <div class="domain-item">
+                            <span class="domain-name">github.com</span>
+                            <span class="domain-category">Development</span>
+                            <button class="btn-small btn-danger">Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <h3>Blocked Categories</h3>
+                    <div class="category-list">
+                        <label class="category-toggle">
+                            <input type="checkbox" checked>
+                            <span>🚫 Social Media (Facebook, Twitter, Instagram)</span>
+                        </label>
+                        <label class="category-toggle">
+                            <input type="checkbox" checked>
+                            <span>🚫 File Sharing (Dropbox, Google Drive)</span>
+                        </label>
+                        <label class="category-toggle">
+                            <input type="checkbox">
+                            <span>🎬 Entertainment (YouTube, Netflix)</span>
+                        </label>
+                        <label class="category-toggle">
+                            <input type="checkbox" checked>
+                            <span>📧 Personal Email (Gmail for personal use)</span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Audit Section -->
+            <section id="audit" class="content-section">
+                <h2>Audit Log</h2>
+
+                <div class="section-card">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Action</th>
+                                <th>Admin</th>
+                                <th>Target</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="auditLog">
+                            <tr>
+                                <td>2025-01-28 10:23:45</td>
+                                <td>Policy Deployed</td>
+                                <td>admin@gov.ke</td>
+                                <td>VPN Auto-Connect</td>
+                                <td><span class="badge success">Success</span></td>
+                            </tr>
+                            <tr>
+                                <td>2025-01-27 14:15:22</td>
+                                <td>Extension Updated</td>
+                                <td>admin@gov.ke</td>
+                                <td>v1.0.5 → All Users</td>
+                                <td><span class="badge success">Success</span></td>
+                            </tr>
+                            <tr>
+                                <td>2025-01-27 09:45:11</td>
+                                <td>Whitelist Modified</td>
+                                <td>admin@gov.ke</td>
+                                <td>Added *.go.ke</td>
+                                <td><span class="badge success">Success</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Policy Creation Modal -->
+    <div id="policyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create New Policy</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Policy Name</label>
+                    <input type="text" placeholder="e.g., Emergency VPN Activation">
+                </div>
+                <div class="form-group">
+                    <label>Policy Type</label>
+                    <select>
+                        <option>Feature Toggle</option>
+                        <option>Configuration Update</option>
+                        <option>Access Control</option>
+                        <option>Security Rule</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Target Users</label>
+                    <select>
+                        <option>All Users</option>
+                        <option>Department: Police</option>
+                        <option>Department: Immigration</option>
+                        <option>Department: KRA</option>
+                        <option>Custom Group...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Configuration (JSON)</label>
+                    <textarea rows="6" placeholder='{"vpn_enabled": true, "auto_connect": true}'></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary modal-close">Cancel</button>
+                <button class="btn-primary">Create & Deploy</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+
+</html>

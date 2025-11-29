@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Gov Sign-In | E-Nation OS</title>
+    <link rel="stylesheet" href="signin.css">
+</head>
+
+<body>
+    <div class="signin-container">
+        <div class="signin-card">
+            <!-- Logo -->
+            <div class="signin-header">
+                <img src="../../icon.png" alt="E-Nation OS" class="signin-logo">
+                <h1>E-Nation OS</h1>
+                <p>Sovereign Authentication System</p>
+            </div>
+
+            <!-- Sign-In Form -->
+            <form id="signinForm" class="signin-form">
+                <div class="form-group">
+                    <label for="email">Government Email</label>
+                    <input type="email" id="email" name="email" placeholder="officer@ministry.go.ke" required
+                        autocomplete="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required
+                        autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="btn-signin">
+                    <span>🔐</span> Sign In
+                </button>
+            </form>
+
+            <!-- Multi-Factor Auth -->
+            <div id="mfaSection" class="mfa-section" style="display: none;">
+                <h3>Multi-Factor Authentication</h3>
+                <p class="mfa-description">Please complete additional verification</p>
+
+                <!-- Biometric Option -->
+                <button class="mfa-option" id="biometricBtn">
+                    <span class="mfa-icon">👤</span>
+                    <div class="mfa-details">
+                        <div class="mfa-title">Biometric Authentication</div>
+                        <div class="mfa-subtitle">FaceID or TouchID</div>
+                    </div>
+                </button>
+
+                <!-- Hardware Key Option -->
+                <button class="mfa-option" id="hardwareKeyBtn">
+                    <span class="mfa-icon">🔑</span>
+                    <div class="mfa-details">
+                        <div class="mfa-title">Hardware Security Key</div>
+                        <div class="mfa-subtitle">TPM or T2 Chip</div>
+                    </div>
+                </button>
+
+                <!-- SMS Code Option -->
+                <button class="mfa-option" id="smsCodeBtn">
+                    <span class="mfa-icon">📱</span>
+                    <div class="mfa-details">
+                        <div class="mfa-title">SMS Verification</div>
+                        <div class="mfa-subtitle">Code sent to +254 *** **45</div>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Clearance Display -->
+            <div id="clearanceSection" class="clearance-section" style="display: none;">
+                <div class="clearance-badge">
+                    <span class="clearance-icon">🛡️</span>
+                    <div class="clearance-info">
+                        <div class="clearance-level" id="clearanceLevel"></div>
+                        <div class="clearance-name" id="userName"></div>
+                    </div>
+                </div>
+                <p class="clearance-message">Access granted. Redirecting...</p>
+            </div>
+
+            <!-- Footer -->
+            <div class="signin-footer">
+                <p>🔒 Secured by E-Nation OS</p>
+                <p class="footer-note">Hardware-backed authentication | Zero-knowledge architecture</p>
+            </div>
+        </div>
+
+        <!-- Test Accounts Panel (for demo) -->
+        <div class="test-accounts">
+            <h4>Test Accounts (Demo Mode)</h4>
+            <div class="test-account-list">
+                <div class="test-account" data-email="president@gov.ke" data-clearance="1">
+                    <strong>President</strong>
+                    <span>Level 1 - Full Access</span>
+                </div>
+                <div class="test-account" data-email="minister@defense.go.ke" data-clearance="2">
+                    <strong>Cabinet Secretary</strong>
+                    <span>Level 2 - Ministry Access</span>
+                </div>
+                <div class="test-account" data-email="director@police.go.ke" data-clearance="3">
+                    <strong>Director</strong>
+                    <span>Level 3 - Department Access</span>
+                </div>
+                <div class="test-account" data-email="officer@kra.go.ke" data-clearance="4">
+                    <strong>Field Officer</strong>
+                    <span>Level 4 - Task Access</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="signin.js"></script>
+</body>
+
+</html>

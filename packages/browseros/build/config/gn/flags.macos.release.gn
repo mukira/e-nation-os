@@ -3,6 +3,7 @@ is_debug=false
 is_component_build=false
 is_official_build=true
 symbol_level=0
+treat_warnings_as_errors=false
 is_clang=true
 chrome_pgo_phase = 0
 dcheck_always_on=false

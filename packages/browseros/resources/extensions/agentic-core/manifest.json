@@ -9,6 +9,7 @@
         "activeTab",
         "scripting",
         "webRequest",
+        "webRequestBlocking",
         "declarativeNetRequest"
     ],
     "host_permissions": [
@@ -20,6 +21,9 @@
         "https://services.sentinel-hub.com/*",
         "https://api.e-nation.go.ke/*"
     ],
+    "chrome_url_overrides": {
+        "newtab": "newtab.html"
+    },
     "background": {
         "service_worker": "background.js",
         "type": "module"

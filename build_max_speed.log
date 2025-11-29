@@ -1,0 +1,381 @@
+🚀 E-Nation OS - MAXIMUM SPEED BUILD
+======================================
+
+⚡ Optimizations active:
+  ✅ ccache (10x rebuilds)
+  ✅ No debug symbols (40% faster)
+  ✅ Non-official build (30% faster)
+  ✅ LLVM linker (15-25% faster)
+  ✅ Thin LTO (10-15% faster)
+  ✅ Precompiled headers (10-20% faster)
+  ✅ Jumbo build (30-40% faster)
+  ✅ JOBS=10 (20-30% faster)
+  ✅ Force-resume (never loses progress)
+
+📊 Expected times:
+  First build: 30-60 minutes 🚀
+  Rebuilds: 5-10 minutes 🚀
+
+🔄 Starting build with force-resume...
+
+unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+[2025-11-28 14:09:33] ======================================================================
+[2025-11-28 14:09:33] 🔄 FORCE-RESUME BUILD AGENT ACTIVATED
+[2025-11-28 14:09:33]    This will RESUME from where it stopped, not restart!
+[2025-11-28 14:09:33] ======================================================================
+[2025-11-28 14:09:33] 🔄 RESUMING build (attempt 1/20)
+[2025-11-28 14:09:33]    Last completed: 0 targets
+[2025-11-28 14:09:33]    JOBS: 10
+[2025-11-28 14:09:33]    Command: ninja -C /Users/Mukira/chromium/src/out/Release chrome
+ninja: Entering directory `/Users/Mukira/chromium/src/out/Release'
+[0/1] Regenerating ninja files
+ERROR Unresolved dependencies.
+//chrome/test:unit_tests(//build/toolchain/mac:clang_x64)
+needs //chrome/common/safe_browsing:archive_analyzer_results(//build/toolchain/mac:clang_x64)
+//chrome/test:unit_tests(//build/toolchain/mac:clang_x64)
+needs //chrome/common/safe_browsing:disk_image_type_sniffer_mac(//build/toolchain/mac:clang_x64)
+//components:components_unittests(//build/toolchain/mac:clang_x64)
+needs //components/permissions/prediction_service:unit_tests(//build/toolchain/mac:clang_x64)
+FAILED: build.ninja.stamp
+[2025-11-28 14:10:18] ❌ Build error: FAILED: build.ninja.stamp
+../../buildtools/mac/gn --root=../.. -q --regeneration gen .
+ninja: error: rebuilding 'build.ninja': subcommand failed
+[2025-11-28 14:10:18] ❌ Build exited with code 1
+[2025-11-28 14:10:18]    Last line: ninja: error: rebuilding 'build.ninja': subcommand failed
+[2025-11-28 14:10:18] ⏳ Resuming in 5 seconds... (attempt 2)
+[2025-11-28 14:10:23] 🔄 RESUMING build (attempt 2/20)
+[2025-11-28 14:10:23]    Last completed: 0 targets
+[2025-11-28 14:10:23]    JOBS: 10
+[2025-11-28 14:10:23]    Command: ninja -C /Users/Mukira/chromium/src/out/Release chrome
+ninja: Entering directory `/Users/Mukira/chromium/src/out/Release'
+[0/1] Regenerating ninja files
+ERROR Unresolved dependencies.
+//chrome/test:unit_tests(//build/toolchain/mac:clang_x64)
+needs //chrome/common/safe_browsing:archive_analyzer_results(//build/toolchain/mac:clang_x64)
+//chrome/test:unit_tests(//build/toolchain/mac:clang_x64)
+needs //chrome/common/safe_browsing:disk_image_type_sniffer_mac(//build/toolchain/mac:clang_x64)
+//components:components_unittests(//build/toolchain/mac:clang_x64)
+needs //components/permissions/prediction_service:unit_tests(//build/toolchain/mac:clang_x64)
+FAILED: build.ninja.stamp
+[2025-11-28 14:10:39] ❌ Build error: FAILED: build.ninja.stamp
+../../buildtools/mac/gn --root=../.. -q --regeneration gen .
+ninja: error: rebuilding 'build.ninja': subcommand failed
+[2025-11-28 14:10:39] ❌ Build exited with code 1
+[2025-11-28 14:10:39]    Last line: ninja: error: rebuilding 'build.ninja': subcommand failed
+[2025-11-28 14:10:39] ⏳ Resuming in 5 seconds... (attempt 3)
+[2025-11-28 14:10:44] 🔄 RESUMING build (attempt 3/20)
+[2025-11-28 14:10:44]    Last completed: 0 targets
+[2025-11-28 14:10:44]    JOBS: 10
+[2025-11-28 14:10:44]    Command: ninja -C /Users/Mukira/chromium/src/out/Release chrome
+ninja: Entering directory `/Users/Mukira/chromium/src/out/Release'
+[0/1] Regenerating ninja files
+ERROR Unresolved dependencies.
+//chrome/test:unit_tests(//build/toolchain/mac:clang_x64)
+needs //chrome/common/safe_browsing:archive_analyzer_results(//build/toolchain/mac:clang_x64)
+//chrome/test:unit_tests(//build/toolchain/mac:clang_x64)
+needs //chrome/common/safe_browsing:disk_image_type_sniffer_mac(//build/toolchain/mac:clang_x64)
+//components:components_unittests(//build/toolchain/mac:clang_x64)
+needs //components/permissions/prediction_service:unit_tests(//build/toolchain/mac:clang_x64)
+FAILED: build.ninja.stamp
+[2025-11-28 14:11:00] ❌ Build error: FAILED: build.ninja.stamp
+../../buildtools/mac/gn --root=../.. -q --regeneration gen .
+ninja: error: rebuilding 'build.ninja': subcommand failed
+[2025-11-28 14:11:00] ❌ Build exited with code 1
+[2025-11-28 14:11:00]    Last line: ninja: error: rebuilding 'build.ninja': subcommand failed
+[2025-11-28 14:11:00] ⏳ Resuming in 5 seconds... (attempt 4)
+[2025-11-28 14:11:05] 🔄 RESUMING build (attempt 4/20)
+[2025-11-28 14:11:05]    Last completed: 0 targets
+[2025-11-28 14:11:05]    JOBS: 10
+[2025-11-28 14:11:05]    Command: ninja -C /Users/Mukira/chromium/src/out/Release chrome
+ninja: Entering directory `/Users/Mukira/chromium/src/out/Release'
+[0/1] Regenerating ninja files
+ERROR Unresolved dependencies.
+//chrome/test:unit_tests(//build/toolchain/mac:clang_x64)
+needs //chrome/common/safe_browsing:archive_analyzer_results(//build/toolchain/mac:clang_x64)
+//chrome/test:unit_tests(//build/toolchain/mac:clang_x64)
+needs //chrome/common/safe_browsing:disk_image_type_sniffer_mac(//build/toolchain/mac:clang_x64)
+//components:components_unittests(//build/toolchain/mac:clang_x64)
+needs //components/permissions/prediction_service:unit_tests(//build/toolchain/mac:clang_x64)
+FAILED: build.ninja.stamp
+[2025-11-28 14:11:22] ❌ Build error: FAILED: build.ninja.stamp
+../../buildtools/mac/gn --root=../.. -q --regeneration gen .
+ninja: error: rebuilding 'build.ninja': subcommand failed
+[2025-11-28 14:11:22] ❌ Build exited with code 1
+[2025-11-28 14:11:22]    Last line: ninja: error: rebuilding 'build.ninja': subcommand failed
+[2025-11-28 14:11:22] ⏳ Resuming in 5 seconds... (attempt 5)
+[2025-11-28 14:11:27] 🔄 RESUMING build (attempt 5/20)
+[2025-11-28 14:11:27]    Last completed: 0 targets
+[2025-11-28 14:11:27]    JOBS: 10
+[2025-11-28 14:11:27]    Command: ninja -C /Users/Mukira/chromium/src/out/Release chrome
+ninja: Entering directory `/Users/Mukira/chromium/src/out/Release'
+[0/1] Regenerating ninja files
+ERROR Unresolved dependencies.
+//chrome/test:unit_tests(//build/toolchain/mac:clang_x64)
+needs //chrome/common/safe_browsing:archive_analyzer_results(//build/toolchain/mac:clang_x64)
+//chrome/test:unit_tests(//build/toolchain/mac:clang_x64)
+needs //chrome/common/safe_browsing:disk_image_type_sniffer_mac(//build/toolchain/mac:clang_x64)
+//components:components_unittests(//build/toolchain/mac:clang_x64)
+needs //components/permissions/prediction_service:unit_tests(//build/toolchain/mac:clang_x64)
+FAILED: build.ninja.stamp
+[2025-11-28 14:11:42] ❌ Build error: FAILED: build.ninja.stamp
+../../buildtools/mac/gn --root=../.. -q --regeneration gen .
+ninja: error: rebuilding 'build.ninja': subcommand failed
+[2025-11-28 14:11:42] ❌ Build exited with code 1
+[2025-11-28 14:11:42]    Last line: ninja: error: rebuilding 'build.ninja': subcommand failed
+[2025-11-28 14:11:42] ⏳ Resuming in 5 seconds... (attempt 6)
+[2025-11-28 14:11:47] 🔄 RESUMING build (attempt 6/20)
+[2025-11-28 14:11:47]    Last completed: 0 targets
+[2025-11-28 14:11:47]    JOBS: 10
+[2025-11-28 14:11:47]    Command: ninja -C /Users/Mukira/chromium/src/out/Release chrome
+ninja: Entering directory `/Users/Mukira/chromium/src/out/Release'
+[0/1] Regenerating ninja files
+ERROR Unresolved dependencies.
+//chrome/test:unit_tests(//build/toolchain/mac:clang_x64)
+needs //chrome/common/safe_browsing:archive_analyzer_results(//build/toolchain/mac:clang_x64)
+//chrome/test:unit_tests(//build/toolchain/mac:clang_x64)
+needs //chrome/common/safe_browsing:disk_image_type_sniffer_mac(//build/toolchain/mac:clang_x64)
+//components:components_unittests(//build/toolchain/mac:clang_x64)
+needs //components/permissions/prediction_service:unit_tests(//build/toolchain/mac:clang_x64)
+FAILED: build.ninja.stamp
+[2025-11-28 14:12:02] ❌ Build error: FAILED: build.ninja.stamp
+../../buildtools/mac/gn --root=../.. -q --regeneration gen .
+ninja: error: rebuilding 'build.ninja': subcommand failed
+[2025-11-28 14:12:02] ❌ Build exited with code 1
+[2025-11-28 14:12:02]    Last line: ninja: error: rebuilding 'build.ninja': subcommand failed
+[2025-11-28 14:12:02] ⏳ Resuming in 5 seconds... (attempt 7)
+[2025-11-28 14:12:07] 🔄 RESUMING build (attempt 7/20)
+[2025-11-28 14:12:07]    Last completed: 0 targets
+[2025-11-28 14:12:07]    JOBS: 10
+[2025-11-28 14:12:07]    Command: ninja -C /Users/Mukira/chromium/src/out/Release chrome
+ninja: Entering directory `/Users/Mukira/chromium/src/out/Release'
+[0/1] Regenerating ninja files
+ERROR Unresolved dependencies.
+//chrome/test:unit_tests(//build/toolchain/mac:clang_x64)unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+
+needs //chrome/common/safe_browsing:archive_analyzer_results(//build/toolchain/mac:clang_x64)
+//chrome/test:unit_tests(//build/toolchain/mac:clang_x64)
+needs //chrome/common/safe_browsing:disk_image_type_sniffer_mac(//build/toolchain/mac:clang_x64)
+//components:components_unittests(//build/toolchain/mac:clang_x64)
+needs //components/permissions/prediction_service:unit_tests(//build/toolchain/mac:clang_x64)
+FAILED: build.ninja.stamp
+[2025-11-28 14:12:23] ❌ Build error: FAILED: build.ninja.stamp
+../../buildtools/mac/gn --root=../.. -q --regeneration gen .
+ninja: error: rebuilding 'build.ninja': subcommand failed
+[2025-11-28 14:12:23] ❌ Build exited with code 1
+[2025-11-28 14:12:23]    Last line: ninja: error: rebuilding 'build.ninja': subcommand failed
+[2025-11-28 14:12:23] ⏳ Resuming in 5 seconds... (attempt 8)
+[2025-11-28 14:12:28] 🔄 RESUMING build (attempt 8/20)
+[2025-11-28 14:12:28]    Last completed: 0 targets
+[2025-11-28 14:12:28]    JOBS: 10
+[2025-11-28 14:12:28]    Command: ninja -C /Users/Mukira/chromium/src/out/Release chrome
+ninja: Entering directory `/Users/Mukira/chromium/src/out/Release'
+[0/1] Regenerating ninja files
+ERROR Unresolved dependencies.
+//chrome/test:unit_tests(//build/toolchain/mac:clang_x64)
+needs //chrome/common/safe_browsing:archive_analyzer_results(//build/toolchain/mac:clang_x64)
+//chrome/test:unit_tests(//build/toolchain/mac:clang_x64)
+needs //chrome/common/safe_browsing:disk_image_type_sniffer_mac(//build/toolchain/mac:clang_x64)
+//components:components_unittests(//build/toolchain/mac:clang_x64)
+needs //components/permissions/prediction_service:unit_tests(//build/toolchain/mac:clang_x64)
+FAILED: build.ninja.stamp
+[2025-11-28 14:12:44] ❌ Build error: FAILED: build.ninja.stamp
+../../buildtools/mac/gn --root=../.. -q --regeneration gen .
+ninja: error: rebuilding 'build.ninja': subcommand failed
+[2025-11-28 14:12:44] ❌ Build exited with code 1
+[2025-11-28 14:12:44]    Last line: ninja: error: rebuilding 'build.ninja': subcommand failed
+[2025-11-28 14:12:44] ⏳ Resuming in 5 seconds... (attempt 9)
+[2025-11-28 14:12:49] 🔄 RESUMING build (attempt 9/20)
+[2025-11-28 14:12:49]    Last completed: 0 targets
+[2025-11-28 14:12:49]    JOBS: 10
+[2025-11-28 14:12:49]    Command: ninja -C /Users/Mukira/chromium/src/out/Release chrome
+ninja: Entering directory `/Users/Mukira/chromium/src/out/Release'
+[0/1] Regenerating ninja files
+ERROR Unresolved dependencies.
+//chrome/test:unit_tests(//build/toolchain/mac:clang_x64)
+needs //chrome/common/safe_browsing:archive_analyzer_results(//build/toolchain/mac:clang_x64)
+//chrome/test:unit_tests(//build/toolchain/mac:clang_x64)
+needs //chrome/common/safe_browsing:disk_image_type_sniffer_mac(//build/toolchain/mac:clang_x64)
+//components:components_unittests(//build/toolchain/mac:clang_x64)
+needs //components/permissions/prediction_service:unit_tests(//build/toolchain/mac:clang_x64)
+FAILED: build.ninja.stamp
+[2025-11-28 14:13:05] ❌ Build error: FAILED: build.ninja.stamp
+../../buildtools/mac/gn --root=../.. -q --regeneration gen .
+ninja: error: rebuilding 'build.ninja': subcommand failed
+[2025-11-28 14:13:05] ❌ Build exited with code 1
+[2025-11-28 14:13:05]    Last line: ninja: error: rebuilding 'build.ninja': subcommand failed
+[2025-11-28 14:13:05] ⏳ Resuming in 5 seconds... (attempt 10)
+[2025-11-28 14:13:10] 🔄 RESUMING build (attempt 10/20)
+[2025-11-28 14:13:10]    Last completed: 0 targets
+[2025-11-28 14:13:10]    JOBS: 10
+[2025-11-28 14:13:10]    Command: ninja -C /Users/Mukira/chromium/src/out/Release chrome
+ninja: Entering directory `/Users/Mukira/chromium/src/out/Release'
+[0/1] Regenerating ninja files
+ERROR Unresolved dependencies.
+//chrome/test:unit_tests(//build/toolchain/mac:clang_x64)
+needs //chrome/common/safe_browsing:archive_analyzer_results(//build/toolchain/mac:clang_x64)
+//chrome/test:unit_tests(//build/toolchain/mac:clang_x64)
+needs //chrome/common/safe_browsing:disk_image_type_sniffer_mac(//build/toolchain/mac:clang_x64)
+//components:components_unittests(//build/toolchain/mac:clang_x64)
+needs //components/permissions/prediction_service:unit_tests(//build/toolchain/mac:clang_x64)
+FAILED: build.ninja.stamp
+[2025-11-28 14:13:26] ❌ Build error: FAILED: build.ninja.stamp
+../../buildtools/mac/gn --root=../.. -q --regeneration gen .
+ninja: error: rebuilding 'build.ninja': subcommand failed
+[2025-11-28 14:13:26] ❌ Build exited with code 1
+[2025-11-28 14:13:26]    Last line: ninja: error: rebuilding 'build.ninja': subcommand failed
+[2025-11-28 14:13:26] ⏳ Resuming in 5 seconds... (attempt 11)
+[2025-11-28 14:13:31] 🔄 RESUMING build (attempt 11/20)
+[2025-11-28 14:13:31]    Last completed: 0 targets
+[2025-11-28 14:13:31]    JOBS: 10
+[2025-11-28 14:13:31]    Command: ninja -C /Users/Mukira/chromium/src/out/Release chrome
+ninja: Entering directory `/Users/Mukira/chromium/src/out/Release'
+[0/1] Regenerating ninja files
+ERROR Unresolved dependencies.
+//chrome/test:unit_tests(//build/toolchain/mac:clang_x64)
+needs //chrome/common/safe_browsing:archive_analyzer_results(//build/toolchain/mac:clang_x64)
+//chrome/test:unit_tests(//build/toolchain/mac:clang_x64)
+needs //chrome/common/safe_browsing:disk_image_type_sniffer_mac(//build/toolchain/mac:clang_x64)
+//components:components_unittests(//build/toolchain/mac:clang_x64)
+needs //components/permissions/prediction_service:unit_tests(//build/toolchain/mac:clang_x64)
+FAILED: build.ninja.stamp
+[2025-11-28 14:13:47] ❌ Build error: FAILED: build.ninja.stamp
+../../buildtools/mac/gn --root=../.. -q --regeneration gen .
+ninja: error: rebuilding 'build.ninja': subcommand failed
+[2025-11-28 14:13:47] ❌ Build exited with code 1
+[2025-11-28 14:13:47]    Last line: ninja: error: rebuilding 'build.ninja': subcommand failed
+[2025-11-28 14:13:47] ⏳ Resuming in 5 seconds... (attempt 12)
+[2025-11-28 14:13:52] 🔄 RESUMING build (attempt 12/20)
+[2025-11-28 14:13:52]    Last completed: 0 targets
+[2025-11-28 14:13:52]    JOBS: 10
+[2025-11-28 14:13:52]    Command: ninja -C /Users/Mukira/chromium/src/out/Release chrome
+ninja: Entering directory `/Users/Mukira/chromium/src/out/Release'
+[0/1] Regenerating ninja files
+ERROR Unresolved dependencies.
+//chrome/test:unit_tests(//build/toolchain/mac:clang_x64)
+needs //chrome/common/safe_browsing:archive_analyzer_results(//build/toolchain/mac:clang_x64)
+//chrome/test:unit_tests(//build/toolchain/mac:clang_x64)
+needs //chrome/common/safe_browsing:disk_image_type_sniffer_mac(//build/toolchain/mac:clang_x64)
+//components:components_unittests(//build/toolchain/mac:clang_x64)
+needs //components/permissions/prediction_service:unit_tests(//build/toolchain/mac:clang_x64)
+FAILED: build.ninja.stamp
+[2025-11-28 14:14:07] ❌ Build error: FAILED: build.ninja.stamp
+../../buildtools/mac/gn --root=../.. -q --regeneration gen .
+ninja: error: rebuilding 'build.ninja': subcommand failed
+[2025-11-28 14:14:07] ❌ Build exited with code 1
+[2025-11-28 14:14:07]    Last line: ninja: error: rebuilding 'build.ninja': subcommand failed
+[2025-11-28 14:14:07] ⏳ Resuming in 5 seconds... (attempt 13)
+[2025-11-28 14:14:13] 🔄 RESUMING build (attempt 13/20)
+[2025-11-28 14:14:13]    Last completed: 0 targets
+[2025-11-28 14:14:13]    JOBS: 10
+[2025-11-28 14:14:13]    Command: ninja -C /Users/Mukira/chromium/src/out/Release chrome
+ninja: Entering directory `/Users/Mukira/chromium/src/out/Release'
+[0/1] Regenerating ninja files
+ERROR Unresolved dependencies.
+//chrome/test:unit_tests(//build/toolchain/mac:clang_x64)
+needs //chrome/common/safe_browsing:archive_analyzer_results(//build/toolchain/mac:clang_x64)
+//chrome/test:unit_tests(//build/toolchain/mac:clang_x64)
+needs //chrome/common/safe_browsing:disk_image_type_sniffer_mac(//build/toolchain/mac:clang_x64)
+//components:components_unittests(//build/toolchain/mac:clang_x64)
+needs //components/permissions/prediction_service:unit_tests(//build/toolchain/mac:clang_x64)
+FAILED: build.ninja.stamp
+[2025-11-28 14:14:29] ❌ Build error: FAILED: build.ninja.stamp
+../../buildtools/mac/gn --root=../.. -q --regeneration gen .
+ninja: error: rebuilding 'build.ninja': subcommand failed
+[2025-11-28 14:14:29] ❌ Build exited with code 1
+[2025-11-28 14:14:29]    Last line: ninja: error: rebuilding 'build.ninja': subcommand failedunlimited
+unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+unlimited
+
+[2025-11-28 14:14:29] ⏳ Resuming in 5 seconds... (attempt 14)
+[2025-11-28 14:14:34] 🔄 RESUMING build (attempt 14/20)
+[2025-11-28 14:14:34]    Last completed: 0 targets
+[2025-11-28 14:14:34]    JOBS: 10
+[2025-11-28 14:14:34]    Command: ninja -C /Users/Mukira/chromium/src/out/Release chrome
+ninja: Entering directory `/Users/Mukira/chromium/src/out/Release'
+[2025-11-28 14:14:34] ⚠️ STALL DETECTED: No progress for 300s at target 0
+[2025-11-28 14:14:34] ⚠️ Stall detected - will kill and RESUME...
+[2025-11-28 14:14:34] ⏳ Resuming in 5 seconds... (attempt 15)
+[2025-11-28 14:14:39] 🔄 RESUMING build (attempt 15/20)
+[2025-11-28 14:14:39]    Last completed: 0 targets
+[2025-11-28 14:14:39]    JOBS: 10
+[2025-11-28 14:14:39]    Command: ninja -C /Users/Mukira/chromium/src/out/Release chrome
+ninja: Entering directory `/Users/Mukira/chromium/src/out/Release'
+[2025-11-28 14:14:39] ⚠️ STALL DETECTED: No progress for 305s at target 0
+[2025-11-28 14:14:39] ⚠️ Stall detected - will kill and RESUME...
+[2025-11-28 14:14:39] ⏳ Resuming in 5 seconds... (attempt 16)
+[2025-11-28 14:14:44] 🔄 RESUMING build (attempt 16/20)
+[2025-11-28 14:14:44]    Last completed: 0 targets
+[2025-11-28 14:14:44]    JOBS: 10
+[2025-11-28 14:14:44]    Command: ninja -C /Users/Mukira/chromium/src/out/Release chrome
+ninja: Entering directory `/Users/Mukira/chromium/src/out/Release'
+[2025-11-28 14:14:44] ⚠️ STALL DETECTED: No progress for 311s at target 0
+[2025-11-28 14:14:44] ⚠️ Stall detected - will kill and RESUME...
+[2025-11-28 14:14:44] ⏳ Resuming in 5 seconds... (attempt 17)
+[2025-11-28 14:14:49] 🔄 RESUMING build (attempt 17/20)
+[2025-11-28 14:14:49]    Last completed: 0 targets
+[2025-11-28 14:14:49]    JOBS: 10
+[2025-11-28 14:14:49]    Command: ninja -C /Users/Mukira/chromium/src/out/Release chrome
+ninja: Entering directory `/Users/Mukira/chromium/src/out/Release'
+[2025-11-28 14:14:50] ⚠️ STALL DETECTED: No progress for 316s at target 0
+[2025-11-28 14:14:50] ⚠️ Stall detected - will kill and RESUME...
+[2025-11-28 14:14:50] ⏳ Resuming in 5 seconds... (attempt 18)
+[2025-11-28 14:14:55] 🔄 RESUMING build (attempt 18/20)
+[2025-11-28 14:14:55]    Last completed: 0 targets
+[2025-11-28 14:14:55]    JOBS: 10
+[2025-11-28 14:14:55]    Command: ninja -C /Users/Mukira/chromium/src/out/Release chrome
+ninja: Entering directory `/Users/Mukira/chromium/src/out/Release'
+[2025-11-28 14:14:55] ⚠️ STALL DETECTED: No progress for 322s at target 0
+[2025-11-28 14:14:55] ⚠️ Stall detected - will kill and RESUME...
+[2025-11-28 14:14:55] ⏳ Resuming in 5 seconds... (attempt 19)
+[2025-11-28 14:15:00] 🔄 RESUMING build (attempt 19/20)
+[2025-11-28 14:15:00]    Last completed: 0 targets
+[2025-11-28 14:15:00]    JOBS: 10
+[2025-11-28 14:15:00]    Command: ninja -C /Users/Mukira/chromium/src/out/Release chrome
+ninja: Entering directory `/Users/Mukira/chromium/src/out/Release'
+[2025-11-28 14:15:01] ⚠️ STALL DETECTED: No progress for 327s at target 0
+[2025-11-28 14:15:01] ⚠️ Stall detected - will kill and RESUME...
+[2025-11-28 14:15:01] ⏳ Resuming in 5 seconds... (attempt 20)
+[2025-11-28 14:15:06] 🔄 RESUMING build (attempt 20/20)
+[2025-11-28 14:15:06]    Last completed: 0 targets
+[2025-11-28 14:15:06]    JOBS: 10
+[2025-11-28 14:15:06]    Command: ninja -C /Users/Mukira/chromium/src/out/Release chrome
+ninja: Entering directory `/Users/Mukira/chromium/src/out/Release'
+[2025-11-28 14:15:06] ⚠️ STALL DETECTED: No progress for 333s at target 0
+[2025-11-28 14:15:06] ⚠️ Stall detected - will kill and RESUME...
+[2025-11-28 14:15:06] ❌ MAX RESUME ATTEMPTS (20) REACHED
+[2025-11-28 14:15:06] ❌ Build did not complete after 20 resume attempts

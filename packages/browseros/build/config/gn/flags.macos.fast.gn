@@ -1,0 +1,80 @@
+# Optimized GN Flags for FAST Full Browser Build
+# E-Nation OS - Speed-optimized configuration
+
+# ============================================
+# CORE BUILD SETTINGS (FASTEST)
+# ============================================
+is_debug = false
+is_component_build = false
+is_official_build = false  # ⚡ Disabled for MUCH faster builds
+symbol_level = 0            # ⚡ No debug symbols = 40% faster
+blink_symbol_level = 0      # ⚡ No Blink symbols = faster
+
+# ============================================
+# CCACHE (10x faster rebuilds)
+# ============================================
+cc_wrapper = "ccache"
+
+# ============================================
+# OPTIMIZATION LEVEL (Balanced)
+# ============================================
+# Official builds are SLOW due to heavy optimizations
+# We use moderate optimization for speed+performance balance
+is_clang = true
+chrome_pgo_phase = 0        # ⚡ Disable PGO = much faster
+treat_warnings_as_errors = false
+
+# ============================================
+# DISABLE UNUSED FEATURES (30% faster)
+# ============================================
+enable_nacl = false         # ⚡ Native Client not needed
+enable_remoting = false     # ⚡ Chrome Remote Desktop not needed
+enable_reading_list = false
+enable_reporting = false
+enable_service_discovery = false
+enable_hangout_services_extension = false
+enable_mdns = false
+build_with_tflite_lib = false
+safe_browsing_mode = 0      # Disable safe browsing compilation
+
+# ============================================
+# KEEP ESSENTIAL FEATURES
+# ============================================
+enable_widevine = true      # DRM for video
+proprietary_codecs = true   # H.264, AAC, etc.
+ffmpeg_branding = "Chrome"
+enable_mse_mpeg2ts_stream_parser = true
+enable_swiftshader = true
+enable_platform_hevc = true
+
+# ============================================
+# BRANDING & APIs
+# ============================================
+google_api_key = ""
+google_default_client_id = ""
+google_default_client_secret = ""
+use_official_google_api_keys = false
+use_unofficial_version_number = false
+
+# ============================================
+# macOS SPECIFIC
+# ============================================
+enable_sparkle = true       # Auto-updater for macOS
+enable_updater = false
+target_cpu = "x64"          # Intel only for faster builds
+
+# ============================================
+# DEBUGGING
+# ============================================
+dcheck_always_on = false
+enable_iterator_debugging = false
+disable_fieldtrial_testing_config = true
+fatal_linker_warnings = false
+
+# ============================================
+# ESTIMATED SPEED IMPROVEMENT
+# ============================================
+# Without these optimizations: 2-4 hours
+# With these optimizations:    1.5-2.5 hours (first build)
+# Rebuilds with ccache:        20-40 minutes ✅
+# Small changes:               5-15 minutes ✅

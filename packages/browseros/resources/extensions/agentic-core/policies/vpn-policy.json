@@ -1,0 +1,10 @@
+{
+    "name": "VPN Auto-Connect Policy",
+    "type": "feature_toggle",
+    "feature": "vpn_auto_connect",
+    "enabled": true,
+    "target": "all_users",
+    "description": "Automatically enables VPN when accessing government sites",
+    "created_by": "admin@gov.ke",
+    "created_at": "2025-01-28T10:00:00Z"
+}
